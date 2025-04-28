@@ -103,17 +103,16 @@ export default function ProductDetailPage() {
     { label: 'Sizes', key: 'sizes' },
     { label: 'Toppings', key: 'toppings' },
     { label: 'Sauces', key: 'sauces' },
-    // နောက်ထပ် Tabs များ ထည့်နိုင်သည်
+   
   ];
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: 3 , bgcolor: '#f0f0f0', borderRadius: 10}}>
       <IconButton onClick={() => router.back()} sx={{ mb: 2 }}>
         <ArrowBackIcon />
       </IconButton>
 
       <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
-        {/* ဘယ်ဘက်ခြမ်း - ပုံ */}
         <Box sx={{ maxWidth: 400, width: '100%' }}>
           {product.image && (
             <Image
@@ -126,7 +125,7 @@ export default function ProductDetailPage() {
           )}
         </Box>
 
-        {/* ညာဘက်ခြမ်း - အသေးစိတ်အချက်အလက်များ */}
+
         <Box sx={{ flexGrow: 1 }}>
           <Typography variant="h5" component="div" gutterBottom>
             {product.name}
