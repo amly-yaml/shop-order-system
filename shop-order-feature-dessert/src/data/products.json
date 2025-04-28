@@ -1,0 +1,79 @@
+[
+    {
+      "id": 1,
+      "name": "Chocolate Cake",
+      "price": 12.90,
+      "image": "/Chocolate_Cake.png",
+      "description": "Rich chocolate cake with layers of decadent frosting.",
+      "sizes": [
+        { "name": "Slice", "priceModifier": 6 },
+        { "name": "Whole", "priceModifier": 20 }
+      ],
+      "toppings": [
+        { "name": "Chocolate Shavings", "price": 1.00 },
+        { "name": "Whipped Cream", "price": 0.50 }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Cheese Cake",
+      "price": 12.90,
+      "image": "/cheese_cake.png",
+      "description": "Classic creamy cheesecake with a graham cracker crust.",
+      "sizes": [
+        { "name": "Slice", "priceModifier": 7 },
+        { "name": "Whole", "priceModifier": 25 }
+      ],
+      "sauces": [
+        { "name": "Strawberry", "price": 1.50 },
+        { "name": "Caramel", "price": 1.00 }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Croissant",
+      "price": 6.00,
+      "image": "/Crossant.png",
+      "description": "Flaky and buttery croissant.",
+      "options": [
+        { "name": "Plain", "priceModifier": 2 },
+        { "name": "Chocolate Filled", "priceModifier": 1.00 }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Chocolate Ice-cream",
+      "price": 6.60,
+      "image": "/ice_cream1.png",
+      "description": "Rich and creamy chocolate ice-cream.",
+      "sizes": [
+        { "name": "Single Scoop", "priceModifier": 3 },
+        { "name": "Double Scoop", "priceModifier": 2.00 }
+      ],
+      "toppings": [
+        { "name": "Chocolate Sprinkles", "price": 0.50 }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Strawberry Ice-cream",
+      "price": 6.60,
+      "image": "/ice_cream2.png",
+      "description": "Sweet and refreshing strawberry ice-cream.",
+      "sizes": [
+        { "name": "Single Scoop", "priceModifier": 3 },
+        { "name": "Double Scoop", "priceModifier": 2.00 }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Vanilla Ice-cream",
+      "price": 6.60,
+      "image": "/ice_cream.png",
+      "description": "Classic smooth vanilla ice-cream.",
+      "sizes": [
+        { "name": "Single Scoop", "priceModifier": 3 },
+        { "name": "Double Scoop", "priceModifier": 2.00 }
+      ]
+    }
+  ]
