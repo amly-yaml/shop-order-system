@@ -48,7 +48,7 @@ export default function TitlebarBelowImageList() {
               <React.Fragment key={index}>
                 <Grid size={6}>
                   <Link
-                    href="/category"
+                    href="/category/home"
                     onClick={() => handleSelector(item.title)}
                   >
                     <Box>

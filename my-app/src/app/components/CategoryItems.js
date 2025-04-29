@@ -5,6 +5,7 @@ import { Card, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import { categories, products } from "../utils/data";
 import ProductsList from "./ProductsList";
+import HomeCategoryPage from "./HomeCategoryPage";
 
 function CategoryItems() {
   const [selectedPage, setSelectedPage] = useState("home");
@@ -12,7 +13,7 @@ function CategoryItems() {
     (state) => state.products
   );
   // const products = items.products;
-  // console.log("products", selectedCategory);
+  console.log("products", selectedCategory);
   if (status === "loading") return <p>Loading...</p>;
   const selectedCategoryProduct = selectedCategory === selectedPage;
   // console.log("items", items);
@@ -34,21 +35,7 @@ function CategoryItems() {
               >
                 {selectedCategoryProduct ? (
                   <>
-                    <Typography variant="h6" sx={{ my: 2, p: 2 }}>
-                      {product.title}
-                    </Typography>
-                    <Image
-                      src={product.image}
-                      alt="image"
-                      width={500}
-                      height={500}
-                      style={{
-                        width: 230,
-                        height: 230,
-                        margin: "0 auto",
-                        objectFit: "contain",
-                      }}
-                    />
+                    <HomeCategoryPage product={product}></HomeCategoryPage>
                   </>
                 ) : selectedCategory === "order" ? (
                   <></>

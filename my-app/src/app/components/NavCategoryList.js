@@ -14,23 +14,27 @@ import { Container } from "@mui/material";
 import { categories } from "../utils/data";
 import Link from "next/link";
 
-function CategoryList({ landingPage, landingCategory }) {
+function NavCategoryList({ landingPage, landingCategory }) {
   const { selectedCategory } = useSelector((state) => state.products);
-  //   console.log("selectedCategory", selectedCategory);
+  console.log("selectedCategory", selectedCategory);
   const dispatch = useDispatch();
   const drawerWidth = 240;
 
   useEffect(() => {
-    console.log(landingPage);
-    const defaultCategory = landingCategory || "home";
-    dispatch(setCategory(defaultCategory));
-    dispatch(fetchProductsByCategory(defaultCategory));
+    if (landingCategory) {
+      // const defaultCategory = landingCategory || "home";
+      dispatch(setCategory(landingCategory));
+    } else {
+      dispatch(setCategory(selectedCategory));
+    }
+    //dispatch(fetchProductsByCategory(defaultCategory));
   }, [landingCategory]);
 
   const handleCategoryClick = (categoryName) => {
     dispatch(setCategory(categoryName));
-    dispatch(fetchProductsByCategory(categoryName));
+    //dispatch(fetchProductsByCategory(categoryName));
   };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -55,8 +59,8 @@ function CategoryList({ landingPage, landingCategory }) {
           {categories.map((text, index) => {
             const isActive = selectedCategory === text.slug;
             return (
-              <Link href="/category" key={index}>
-                <ListItem disablePadding>
+              <Link href={`/category/${text.slug}`} key={index}>
+                <ListItem key={index} disablePadding>
                   <ListItemButton
                     onClick={() => handleCategoryClick(text.slug)}
                     sx={{
@@ -91,4 +95,4 @@ function CategoryList({ landingPage, landingCategory }) {
   );
 }
 
-export default CategoryList;
+export default NavCategoryList;

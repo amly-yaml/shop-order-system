@@ -26,6 +26,7 @@ export const productsSlice = createSlice({
   initialState: {
     selectPlace: null,
     selectedCategory: null,
+    selectedItem: null,
     items: [],
     status: "idle",
     error: null,
@@ -36,6 +37,9 @@ export const productsSlice = createSlice({
     },
     setCategory: (state, action) => {
       state.selectedCategory = action.payload;
+    },
+    setSelectedItem: (state, action) => {
+      state.selectedItem = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -52,5 +56,6 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { setPlaceToEat, setCategory } = productsSlice.actions;
+export const { setPlaceToEat, setCategory, setSelectedItem } =
+  productsSlice.actions;
 export default productsSlice.reducer;
