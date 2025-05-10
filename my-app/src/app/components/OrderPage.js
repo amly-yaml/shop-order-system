@@ -37,7 +37,7 @@ export default function OrderPage() {
             imageData.map((item, index) => {
               return (
                 <React.Fragment key={index}>
-                  <Grid size={6}>
+                  <Grid item size={{ xs: 12, sm: 4, md: 6 }}>
                     <Link
                       href="/category/home"
                       onClick={() => handleSelector(item.title)}

@@ -1,6 +1,6 @@
 "use client";
 import { Box, Button, Card, Container, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearOrder,
@@ -21,6 +21,93 @@ import MuiAccordionSummary, {
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import { green, grey } from "@mui/material/colors";
 import Link from "next/link";
+import { setOrderNumber } from "../redux/orderSlice";
+
+const orderingItems = [
+  {
+    id: 0,
+    drink: {
+      id: 0,
+      title: "Americano",
+      image:
+        "https://i.pinimg.com/736x/9c/83/4c/9c834c6827c2332e182aa108092d9801.jpg",
+      price: "12.30",
+    },
+    choice: "Cold Coffee",
+    size: "Grande",
+    basePrice: "85.99",
+    addOns: [
+      {
+        name: "Chocolate Syrup",
+        image: "/images/block.png",
+        price: "0.50",
+      },
+      {
+        name: "Whipped Cream",
+        image: "/images/whipped-cream.png",
+        price: "0.80",
+      },
+    ],
+    quantity: 2,
+  },
+  {
+    id: 1,
+    drink: {
+      id: 2,
+      title: "MatchaLatte",
+      image:
+        "https://i.pinimg.com/736x/9f/a9/fa/9fa9fa79a0d4008c16458c4b33b23b17.jpg",
+      price: "12.30",
+    },
+    choice: "Cold Coffee",
+    size: "Grande",
+    basePrice: "90.59",
+    addOns: [
+      {
+        name: "Honey",
+        image: "/images/honey(1).png",
+        price: "1.75",
+      },
+      {
+        name: "Whipped Cream",
+        image: "/images/whipped-cream.png",
+        price: "0.80",
+      },
+      {
+        name: "Soy Milk",
+        image: "/images/soy-milk.png",
+        price: "1.25",
+      },
+    ],
+    quantity: 2,
+  },
+  {
+    id: 2,
+    drink: {
+      id: 3,
+      title: "Cappucciono",
+      image:
+        "https://i.pinimg.com/736x/c9/c4/f7/c9c4f73587fef7d3e9f6d07671648fb3.jpg",
+      price: "12.30",
+    },
+    choice: "Cold Coffee",
+    size: "Grande",
+    basePrice: "89.49",
+    addOns: [
+      {
+        name: "Hazelnut Syrup",
+        image: "/images/hazelnut.png",
+        price: "1.20",
+      },
+      {
+        name: "Coconut Milk",
+        image: "/images/coconut-milk-copy.png",
+        price: "1.45",
+      },
+    ],
+    quantity: 1,
+  },
+];
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -68,7 +155,9 @@ const changeColor = {
 
 export default function MyOrderPage() {
   const [expanded, setExpanded] = React.useState("null");
+  // const { orderNumber } = useSelector((state) => state.order);
   const { orderItems } = useSelector((state) => state.products);
+  const [orderNumber, setOrderNumberLocal] = useState("");
   console.log("orderItems", orderItems);
   const getAllTotal = useSelector(getAllTotalPrice);
   const dispatch = useDispatch();
@@ -87,12 +176,43 @@ export default function MyOrderPage() {
     setExpanded(newExpanded ? panel : false);
   };
 
+  useEffect(() => {
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    const number = `#${randomNum}`;
+    setOrderNumberLocal(number);
+    dispatch(setOrderNumber(number));
+  }, [dispatch]);
   return (
     <>
-      <Container disableGutters sx={{ width: "1500px", my: 5, pb: 40 }}>
-        <Typography variant="h4" sx={{ my: 5, p: 3 }}>
-          Your Order
-        </Typography>
+      <Container
+        disableGutters
+        sx={{
+          width: "1500px",
+          my: 5,
+          pb: 40,
+        }}
+      >
+        <Box sx={{ display: "flex", justifyContent: "space-between", p: 3 }}>
+          <Typography variant="h4">Your Order</Typography>
+          <Link href="/category/home">
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "#d7ccc8",
+                color: "#3e2723",
+                fontWeight: "bold",
+                px: 4,
+                py: 1.5,
+                "&:hover": {
+                  backgroundColor: "#bcaaa4",
+                },
+              }}
+            >
+              Order More
+            </Button>
+          </Link>
+        </Box>
+
         {orderItems.length === 0 && (
           <>
             <Box
@@ -109,289 +229,258 @@ export default function MyOrderPage() {
               >
                 🍰🧋🥤 There is no Order. 🍰🧋🥤
               </Typography>
-              <Link href="/category/home">
-                <Button variant="outlined" color="secondary" sx={{ my: 3 }}>
-                  <Typography variant="body1">Order More</Typography>
-                </Button>
-              </Link>
             </Box>
           </>
         )}
         {orderItems.length !== 0 && (
           <>
+            <Typography
+              sx={{ fontWeight: "bold", mb: 5, color: "#8d6e63", pl: 3 }}
+            >
+              Order {orderNumber}
+            </Typography>
             <Grid container spacing={2}>
-              {orderItems &&
-                orderItems.map((order, index) => {
-                  const panel = `panel${index + 1}`;
-                  return (
-                    <React.Fragment key={index}>
-                      <Grid item size={{ xs: 3, sm: 3, md: 2 }}>
+              {orderItems.map((order, index) => {
+                const panel = `panel${index + 1}`;
+                return (
+                  <React.Fragment key={index}>
+                    <Grid item size={{ xs: 3, sm: 3, md: 2 }}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Button
+                          sx={{
+                            backgroundColor: "#d7ccc8",
+                            color: "#3e2723",
+                            fontWeight: "bold",
+                            px: 4,
+                            py: 1.5,
+                            "&:hover": {
+                              backgroundColor: "#bcaaa4",
+                            },
+                          }}
+                          onClick={() => dispatch(removeItemOrder(order.id))}
+                        >
+                          Remove
+                        </Button>
+                      </Box>
+                    </Grid>
+                    <Grid item size={{ xs: 7, sm: 6, md: 6 }}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "left",
+                          alignItems: "left",
+                          gap: 3,
+                        }}
+                      >
+                        <Image
+                          src={order.drink.image}
+                          alt={order.drink.title}
+                          width={500}
+                          height={500}
+                          style={{ width: 85, height: 85 }}
+                        ></Image>
                         <Box
                           sx={{
                             display: "flex",
+                            flexDirection: "column",
                             justifyContent: "center",
                           }}
                         >
-                          <Button
-                            variant="outlined"
-                            color="error"
-                            onClick={() => dispatch(removeItemOrder(order.id))}
-                          >
-                            Remove
-                          </Button>
-                        </Box>
-                      </Grid>
-                      <Grid item size={{ xs: 7, sm: 6, md: 6 }}>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            justifyContent: "left",
-                            alignItems: "left",
-                            gap: 3,
-                          }}
-                        >
-                          <Image
-                            src={order.drink.image}
-                            alt={order.drink.title}
-                            width={500}
-                            height={500}
-                            style={{ width: 85, height: 85 }}
-                          ></Image>
-                          <Box
+                          <Typography
+                            variant="h6"
                             sx={{
-                              display: "flex",
-                              flexDirection: "column",
-                              justifyContent: "center",
+                              overflow: "hidden",
+                              wordBreak: "break-all",
                             }}
                           >
-                            <Typography
-                              variant="h6"
-                              sx={{
-                                overflow: "hidden",
-                                wordBreak: "break-all",
-                              }}
-                            >
-                              {order.drink.title}
-                            </Typography>
-                            <Typography variant="body2">
-                              Choice: {order.choice}
-                            </Typography>
-                            <Typography variant="body2">
-                              Size: {order.size}
-                            </Typography>
-                            <Typography variant="body2">
-                              Price: ${order.basePrice}
-                            </Typography>
-                          </Box>
+                            {order.drink.title}
+                          </Typography>
+                          <Typography variant="body2">
+                            Choice: {order.choice}
+                          </Typography>
+                          <Typography variant="body2">
+                            Size: {order.size}
+                          </Typography>
+                          <Typography variant="body2">
+                            Price: ${order.basePrice}
+                          </Typography>
                         </Box>
+                      </Box>
 
-                        <Box sx={{ my: 2 }}>
-                          <Accordion
-                            expanded={expanded === panel}
-                            onChange={handleChange(panel)}
+                      <Box sx={{ my: 2 }}>
+                        <Accordion
+                          expanded={expanded === panel}
+                          onChange={handleChange(panel)}
+                        >
+                          <AccordionSummary
+                            aria-controls="panel1d-content"
+                            id="panel1d-header"
                           >
-                            <AccordionSummary
-                              aria-controls="panel1d-content"
-                              id="panel1d-header"
-                            >
-                              <Typography component="span">
-                                Add Items
-                              </Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                              {order.addOns.map((addon, index) => {
-                                return (
-                                  <React.Fragment key={index}>
+                            <Typography component="span">Add Items</Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            {order.addOns.map((addon, index) => {
+                              return (
+                                <React.Fragment key={index}>
+                                  <Box
+                                    sx={{
+                                      display: "flex",
+                                      justifyContent: "left",
+                                      gap: 1,
+                                      my: 2,
+                                    }}
+                                  >
+                                    <Image
+                                      src={addon.image}
+                                      alt={addon.name}
+                                      width={500}
+                                      height={500}
+                                      style={{ width: 38, height: 38 }}
+                                    ></Image>
                                     <Box
                                       sx={{
                                         display: "flex",
-                                        justifyContent: "left",
-                                        gap: 1,
-                                        my: 2,
+                                        flexDirection: "column",
+                                        justifyContent: "center",
                                       }}
                                     >
-                                      <Image
-                                        src={addon.image}
-                                        alt={addon.name}
-                                        width={500}
-                                        height={500}
-                                        style={{ width: 38, height: 38 }}
-                                      ></Image>
-                                      <Box
-                                        sx={{
-                                          display: "flex",
-                                          flexDirection: "column",
-                                          justifyContent: "center",
-                                        }}
-                                      >
-                                        <Typography variant="caption">
-                                          {addon.name}
-                                        </Typography>
-                                        <Typography variant="caption">
-                                          ${addon.price}
-                                        </Typography>
-                                      </Box>
+                                      <Typography variant="caption">
+                                        {addon.name}
+                                      </Typography>
+                                      <Typography variant="caption">
+                                        ${addon.price}
+                                      </Typography>
                                     </Box>
-                                  </React.Fragment>
-                                );
-                              })}
-                            </AccordionDetails>
-                          </Accordion>
-                        </Box>
-                      </Grid>
-                      <Grid item size={{ xs: 1, sm: 2, md: 2 }}>
-                        <Box
+                                  </Box>
+                                </React.Fragment>
+                              );
+                            })}
+                          </AccordionDetails>
+                        </Accordion>
+                      </Box>
+                    </Grid>
+                    <Grid item size={{ xs: 1, sm: 2, md: 2 }}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          //border: `1px solid ${grey[500]}`,
+                        }}
+                      >
+                        <RemoveIcon
                           sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            //border: `1px solid ${grey[500]}`,
+                            ...changeColor,
+                            border: `2px solid ${grey[700]}`,
+                          }}
+                          cursor="pointer"
+                          color="success"
+                          fontSize="medium"
+                          onClick={() =>
+                            dispatch(decreaseQuantityCart(order.id))
+                          }
+                        ></RemoveIcon>
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            mx: 2,
                           }}
                         >
-                          <RemoveIcon
-                            sx={{
-                              ...changeColor,
-                              border: `2px solid ${grey[700]}`,
-                            }}
-                            cursor="pointer"
-                            color="success"
-                            fontSize="medium"
-                            onClick={() =>
-                              dispatch(decreaseQuantityCart(order.id))
-                            }
-                          ></RemoveIcon>
-                          <Typography
-                            variant="body1"
-                            sx={{
-                              mx: 2,
-                            }}
-                          >
-                            {order.quantity}
-                          </Typography>
-                          <AddIcon
-                            sx={{
-                              ...changeColor,
-                              border: `2px solid ${grey[700]}`,
-                            }}
-                            cursor="pointer"
-                            color="success"
-                            fontSize="medium"
-                            onClick={() =>
-                              dispatch(increaseQuantityCart(order.id))
-                            }
-                          ></AddIcon>
-                        </Box>
-                      </Grid>
-                      <Grid item size={{ xs: 1, sm: 1, md: 2 }}>
-                        <Box textAlign="left">
-                          <Typography variant="body1">
-                            ${getOrderTotal(order)}
-                          </Typography>
-                        </Box>
-                      </Grid>
-                    </React.Fragment>
-                  );
-                })}
+                          {order.quantity}
+                        </Typography>
+                        <AddIcon
+                          sx={{
+                            ...changeColor,
+                            border: `2px solid ${grey[700]}`,
+                          }}
+                          cursor="pointer"
+                          color="success"
+                          fontSize="medium"
+                          onClick={() =>
+                            dispatch(increaseQuantityCart(order.id))
+                          }
+                        ></AddIcon>
+                      </Box>
+                    </Grid>
+                    <Grid item size={{ xs: 1, sm: 1, md: 2 }}>
+                      <Box textAlign="left">
+                        <Typography variant="body1">
+                          ${getOrderTotal(order)}
+                        </Typography>
+                      </Box>
+                    </Grid>
+                  </React.Fragment>
+                );
+              })}
             </Grid>
-            <Card
+            <Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  borderTop: "1px solid #ccc",
+                  pt: 2,
+                  mt: 2,
+                }}
+              >
+                <Typography fontSize="20px" fontWeight="bold" color="#3e2723">
+                  Total
+                </Typography>
+                <Typography fontSize="20px" fontWeight="bold" color="#3e2723">
+                  ${getAllTotal}
+                </Typography>
+              </Box>
+            </Box>
+
+            <Box
               sx={{
-                position: "fixed",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                width: "100%",
-                boxShadow: 7,
-                px: 4,
-                py: 3,
-                zIndex: 1, // to stay above other content
+                mt: 4,
+                display: "flex",
+                justifyContent: "center",
+                gap: 4,
               }}
             >
-              <Container disableGutters sx={{ width: "1500px", my: 1 }}>
-                <Grid container spacing={2}>
-                  {/* Left Half (empty) */}
-                  <Grid item size={{ xs: 12, md: 6 }}>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Link href="/category/home">
-                        <Button variant="outlined" color="secondary">
-                          <Typography variant="body1">Order More</Typography>
-                        </Button>
-                      </Link>
-                    </Box>
-                  </Grid>
-                  <Grid
-                    item
-                    size={{ xs: 12, md: 6 }}
-                    sx={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                    }}
-                  >
-                    <Box sx={{ width: "100%", maxWidth: 460 }}>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          mb: 1,
-                        }}
-                      >
-                        <Typography variant="body1">SubTotal</Typography>
-                        <Typography variant="body1">${getAllTotal}</Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          mb: 1,
-                        }}
-                      >
-                        <Typography variant="body1">GST</Typography>
-                        <Typography variant="body1">
-                          <span>$</span>0
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <Typography variant="h6" fontWeight="bold">
-                          Total
-                        </Typography>
-                        <Typography variant="h6" fontWeight="bold">
-                          $ {getAllTotal}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </Grid>
-                </Grid>
-                <Box
+              <Link href="/">
+                <Button
+                  variant="contained"
                   sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 5,
-                    mt: 4,
-                    mb: 3,
+                    backgroundColor: "#d7ccc8",
+                    color: "#3e2723",
+                    fontWeight: "bold",
+                    px: 4,
+                    py: 1.5,
+                    "&:hover": {
+                      backgroundColor: "#bcaaa4",
+                    },
+                  }}
+                  onClick={() => dispatch(clearOrder())}
+                >
+                  Order Cancel
+                </Button>
+              </Link>
+
+              <Link href="/payment">
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "#ffb74d",
+                    color: "#4e342e",
+                    fontWeight: "bold",
+                    px: 4,
+                    py: 1.5,
+                    "&:hover": {
+                      backgroundColor: "#ffa726",
+                    },
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    onClick={() => dispatch(clearOrder())}
-                  >
-                    Order Cancel
-                  </Button>
-                  <Link href="/">
-                    <Button variant="outlined" color="warning">
-                      Completed Order
-                    </Button>
-                  </Link>
-                </Box>
-              </Container>
-            </Card>
+                  Pay Now / Check out
+                </Button>
+              </Link>
+            </Box>
           </>
         )}
       </Container>

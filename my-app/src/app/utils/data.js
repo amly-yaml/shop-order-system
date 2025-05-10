@@ -1,3 +1,9 @@
+export const images = [
+  "https://images.pexels.com/photos/683039/pexels-photo-683039.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "https://images.pexels.com/photos/3740237/pexels-photo-3740237.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "https://images.pexels.com/photos/982612/pexels-photo-982612.jpeg?auto=compress&cs=tinysrgb&w=1200",
+];
+
 export const itemData = [
   {
     img: "https://images.pexels.com/photos/2638026/pexels-photo-2638026.jpeg?auto=compress&cs=tinysrgb&w=1200",
@@ -40,10 +46,6 @@ export const categories = [
     name: "Non-Coffee",
   },
   {
-    slug: "dessert",
-    name: "Dessert",
-  },
-  {
     slug: "cake",
     name: "Cake",
   },
@@ -66,12 +68,6 @@ export const products = {
       title: "Non-Coffee",
       image:
         "https://i.pinimg.com/736x/96/ee/d9/96eed9822024adfcf31109821b87ab2d.jpg",
-    },
-    {
-      slug: "dessert",
-      title: "Dessert",
-      image:
-        "https://i.pinimg.com/736x/8c/3f/a4/8c3fa4a775c6c64ae8438119fcf278e0.jpg",
     },
     {
       slug: "cake",
@@ -156,32 +152,6 @@ export const products = {
     {
       id: 3,
       title: "Hot Chocolate",
-      image:
-        "https://i.pinimg.com/736x/b3/0a/8f/b30a8f1a86aac9d34887a876b8f2e55b.jpg",
-      price: "12.30",
-    },
-  ],
-  dessert: [
-    {
-      title: "Coffee",
-      image:
-        "https://i.pinimg.com/736x/75/ff/4b/75ff4bd9c9368c0b27f80988026bdb4a.jpg",
-      price: "12.30",
-    },
-    {
-      title: "Non-Coffee",
-      image:
-        "https://i.pinimg.com/736x/96/ee/d9/96eed9822024adfcf31109821b87ab2d.jpg",
-      price: "12.30",
-    },
-    {
-      title: "Dessert",
-      image:
-        "https://i.pinimg.com/736x/8c/3f/a4/8c3fa4a775c6c64ae8438119fcf278e0.jpg",
-      price: "12.30",
-    },
-    {
-      title: "Cake",
       image:
         "https://i.pinimg.com/736x/b3/0a/8f/b30a8f1a86aac9d34887a876b8f2e55b.jpg",
       price: "12.30",
