@@ -7,9 +7,6 @@ import { useParams } from "next/navigation";
 export default function page() {
   const { text } = useParams();
   return (
-    <NavCategoryList
-      landingPage={<CategoryItems></CategoryItems>}
-      landingCategory={text}
-    />
+    <NavCategoryList landingPage={<CategoryItems />} landingCategory={text} />
   );
 }

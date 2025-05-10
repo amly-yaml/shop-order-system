@@ -3,6 +3,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { Typography } from "@mui/material";
 import Link from "next/link";
+import { itemData } from "../utils/data";
 
 function srcset(image, size, rows = 1, cols = 1) {
   return {
@@ -67,20 +68,3 @@ export default function StartOrderPage() {
     </>
   );
 }
-
-const itemData = [
-  {
-    img: "https://images.pexels.com/photos/2638026/pexels-photo-2638026.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    title: "dessert",
-    rows: 2,
-    cols: 2,
-  },
-  {
-    img: "https://images.pexels.com/photos/162766/table-dessert-coffee-on-the-table-162766.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    title: "dessetCake",
-  },
-  {
-    img: "https://images.pexels.com/photos/221082/pexels-photo-221082.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    title: "juice",
-  },
-];

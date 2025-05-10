@@ -6,7 +6,11 @@ import { green } from "@mui/material/colors";
 import Link from "next/link";
 import ProductsItem from "./ProductsItem";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedItem } from "../redux/productSlice";
+import {
+  addToCart,
+  setSelectedItem,
+  startNewOrder,
+} from "../redux/productSlice";
 
 export default function ProductsList({ product }) {
   const { selectedCategory } = useSelector((state) => state.products);
@@ -20,65 +24,41 @@ export default function ProductsList({ product }) {
 
   return (
     <>
-      <Image
-        src={product.image}
-        alt="image"
-        width={500}
-        height={500}
-        style={{
-          width: 230,
-          height: 230,
-          margin: "0 auto",
-          objectFit: "contain",
-        }}
-      />
-      <Box
-        sx={{
-          my: 2,
-          px: 3,
-          display: "flex",
-          justifyContent: "space-between",
-        }}
+      <Link
+        href={`/category/${selectedCategory}/${product.title
+          .toLowerCase()
+          .replace(/\s+/g, "")}`}
+        onClick={() => dispatch(startNewOrder(product))}
       >
+        <Image
+          src={product.image}
+          alt="image"
+          width={500}
+          height={500}
+          style={{
+            width: 230,
+            height: 230,
+            margin: "0 auto",
+            objectFit: "contain",
+          }}
+        />
         <Box
           sx={{
-            textAlign: "left",
+            my: 2,
+            px: 3,
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
-          <Typography variant="h6">{product.title}</Typography>
-          <Typography variant="h6">{product.price}</Typography>
-        </Box>
-
-        <Link
-          href={`/category/${selectedCategory}/${product.title.toLowerCase()}`}
-        >
-          {/* <Button
-            variant="outlined"
-            sx={{ alignItems: "center" }}
-            onClick={() =>
-              dispatch(setSelectedItem(product.title.toLowerCase()))
-            }
-          >
-            +
-          </Button> */}
-          <AddIcon
+          <Box
             sx={{
-              ...changeColor,
+              textAlign: "left",
             }}
-            cursor="pointer"
-            color="success"
-            fontSize="large"
-            onClick={() =>
-              dispatch(setSelectedItem(product.title.toLowerCase()))
-            }
-          ></AddIcon>
-        </Link>
-        {/* <Link href={`/category/home`}>
-          <Button variant="outlined" sx={{ alignItems: "center" }}>
-            Cancel
-          </Button>
-        </Link> */}
-      </Box>
+          >
+            <Typography variant="h6">{product.title}</Typography>
+          </Box>
+        </Box>
+      </Link>
     </>
   );
 }

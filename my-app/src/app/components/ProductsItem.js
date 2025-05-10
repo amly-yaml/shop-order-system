@@ -1,30 +1,87 @@
 import React, { useState } from "react";
-import { itemsCoffee, products } from "../utils/data";
+import { itemProducts } from "../utils/data";
 import Image from "next/image";
 import {
   Box,
   Button,
+  ButtonGroup,
   Card,
   Container,
+  Dialog,
+  DialogActions,
+  DialogTitle,
   Divider,
   Grid,
   Typography,
 } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
+import {
+  addAddOn,
+  addToOrder,
+  cancelItem,
+  chooseSize,
+  chooseType,
+  decreaseQuantity,
+  increaseQuantity,
+} from "../redux/productSlice";
+import { green, grey } from "@mui/material/colors";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function ProductsItem() {
-  const { selectedItem } = useSelector((state) => state.products);
+  const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
+  const { selectedCategory, selectedItem, currentOrder } = useSelector(
+    (state) => state.products
+  );
   console.log("selectedCategoryforProductItems", selectedItem);
+  console.log("currentOrder", currentOrder);
 
   if (!selectedItem) return null;
-  const foundItemObject = itemsCoffee.find((item) => item[selectedItem]);
-  if (!foundItemObject) return <div>No item found.</div>;
+  const foundItemObject = itemProducts.find((item) => item[selectedItem]);
+  if (!foundItemObject)
+    return (
+      <Box>
+        <Typography variant="h4" sx={{ p: 3 }}>
+          {" "}
+          No item found.
+        </Typography>
+      </Box>
+    );
   const foundItem = foundItemObject[selectedItem];
+  if (!currentOrder)
+    return (
+      <Box sx={{ p: 5 }}>
+        <Typography variant="h4">
+          Please select an order first 🍰🧋🥤 !!!
+        </Typography>
+      </Box>
+    );
+
+  const isSelectedTopping = (topping) =>
+    currentOrder?.addOns.find((item) => item.name === topping.name);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const changeColor = {
+    "&:hover": {
+      color: "#fff",
+      background: `${green[500]}`,
+    },
+  };
+
   return (
     <>
       <Container disableGutters sx={{ width: "1000px" }}>
         <Grid container spacing={2}>
-          <Grid size={{ xs: 12, md: 6 }}>
+          <Grid size={{ xs: 12, sm: 3, md: 5, lg: 6 }}>
             <Box
               sx={{
                 mx: 5,
@@ -36,69 +93,103 @@ export default function ProductsItem() {
                 width={500}
                 height={500}
                 style={{
-                  width: 310,
-                  height: 310,
+                  width: 250,
+                  height: 250,
                   margin: "0 auto",
                   objectFit: "cover",
                 }}
               ></Image>
             </Box>
           </Grid>
-          <Grid size={{ xs: 12, md: 6 }}>
+          <Grid size={{ xs: 12, sm: 9, md: 7, lg: 6 }}>
             <Box sx={{ my: 5 }}>
               <Typography variant="h5">{foundItem.name}</Typography>
+              {/* <Typography variant="h5">{foundItem.price}</Typography> */}
               <Box
                 sx={{
-                  my: 4,
-                  display: "flex",
-                  justifyContent: "left",
-                  flexWrap: "wrap", // optional: if too many buttons, they wrap
-                  gap: 2,
+                  my: 3,
+                  // display: "flex",
+                  // justifyContent: "left",
+                  // flexWrap: "wrap", // optional: if too many buttons, they wrap
+                  // gap: 2,
                 }}
               >
-                {foundItem.choice.map((choiceItem, index) => (
-                  <Button key={index} variant="outlined">
-                    <Typography>{choiceItem}</Typography>
-                  </Button>
-                ))}
+                <ButtonGroup>
+                  {foundItem.choice.map((choiceItem, index) => {
+                    const isSelected = choiceItem === currentOrder?.choice;
+                    return (
+                      <Button
+                        key={index}
+                        variant={isSelected ? "contained" : "outlined"}
+                        color={isSelected ? "success" : "primary"}
+                        onClick={() => dispatch(chooseType(choiceItem))}
+                      >
+                        {choiceItem}
+                      </Button>
+                    );
+                  })}
+                </ButtonGroup>
               </Box>
 
               <Box>
                 <Typography variant="h6">Size options</Typography>
                 <Box
                   sx={{
-                    my: 3,
-                    display: "flex",
-                    justifyContent: "left",
-                    flexWrap: "wrap", // optional: if too many buttons, they wrap
-                    gap: 2,
+                    my: 2,
+                    // display: "flex",
+                    // justifyContent: "left",
+                    // flexWrap: "wrap", // optional: if too many buttons, they wrap
                   }}
                 >
-                  {foundItem.size.map((sizeitem, index) => (
-                    <Button key={index} sx={{ px: 3 }} variant="outlined">
-                      {sizeitem}
-                    </Button>
-                  ))}
+                  <ButtonGroup>
+                    {foundItem.size.map((sizeItem, index) => {
+                      const isSelected = currentOrder?.size === sizeItem.name;
+                      return (
+                        <Box key={index}>
+                          <Button
+                            variant={isSelected ? "contained" : "outlined"}
+                            color={isSelected ? "success" : "primary"}
+                            onClick={() => dispatch(chooseSize(sizeItem))}
+                          >
+                            {sizeItem.name}
+                          </Button>
+                          <Typography
+                            sx={{
+                              my: 1,
+                              textAlign: "center",
+                            }}
+                          >
+                            {sizeItem.price}
+                          </Typography>
+                        </Box>
+                      );
+                    })}
+                  </ButtonGroup>
                 </Box>
               </Box>
             </Box>
           </Grid>
         </Grid>
-
-        <Typography sx={{ my: 3 }} variant="h6">
-          Customization
+        <Typography sx={{ my: 1.5 }} variant="h6">
+          Customization AddOns
         </Typography>
         <Grid container spacing={2}>
-          {foundItem.toppings.map((topping, index) => (
-            <React.Fragment key={index}>
-              <Grid size={{ sx: 6, sm: 4, md: 2 }}>
+          {foundItem.toppings.map((topping, index) => {
+            const isSelected = isSelectedTopping(topping) && {
+              backgroundColor: green[400],
+            };
+            return (
+              <Grid key={index} item size={{ xs: 12, sm: 4, md: 3, lg: 2 }}>
                 <Card
                   sx={{
-                    my: 3,
+                    my: 2,
+                    py: 1.5,
                     borderRadius: 3,
                     textAlign: "center",
                     cursor: "pointer",
+                    ...isSelected,
                   }}
+                  onClick={() => dispatch(addAddOn(topping))}
                 >
                   <Image
                     src={topping.image}
@@ -106,16 +197,18 @@ export default function ProductsItem() {
                     width={500}
                     height={500}
                     style={{
-                      width: 130,
-                      height: 130,
+                      width: 80,
+                      height: 80,
                       margin: "0 auto",
                       objectFit: "contain",
+                      marginBottom: "10px",
                     }}
                   />
                   <Divider />
+
                   <Box
                     sx={{
-                      my: 2,
+                      my: 1,
                     }}
                   >
                     <Typography>{topping.name}</Typography>
@@ -123,9 +216,122 @@ export default function ProductsItem() {
                   </Box>
                 </Card>
               </Grid>
-            </React.Fragment>
-          ))}
+            );
+          })}
         </Grid>
+        <Box
+          sx={{
+            my: 3,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Button
+            variant="contained"
+            sx={{
+              mr: 5,
+              py: 1.5,
+              px: 3,
+            }}
+            onClick={handleClickOpen}
+          >
+            Order Item
+          </Button>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+            sx={{
+              p: 3,
+            }}
+          >
+            <DialogTitle
+              id="alert-dialog-title"
+              variant="h4"
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                p: 3,
+                //border: `1px solid ${grey[500]}`,
+              }}
+            >
+              Add Quantity
+            </DialogTitle>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                p: 3,
+                //border: `1px solid ${grey[500]}`,
+              }}
+            >
+              <RemoveIcon
+                sx={{
+                  ...changeColor,
+                  border: `2px solid ${grey[700]}`,
+                }}
+                cursor="pointer"
+                color="success"
+                fontSize="medium"
+                onClick={() => dispatch(decreaseQuantity())}
+              ></RemoveIcon>
+              <Typography
+                variant="h5"
+                sx={{
+                  mx: 2,
+                }}
+              >
+                {currentOrder?.quantity || 0}
+              </Typography>
+              <AddIcon
+                sx={{
+                  ...changeColor,
+                  border: `2px solid ${grey[700]}`,
+                }}
+                cursor="pointer"
+                color="success"
+                fontSize="medium"
+                onClick={() => dispatch(increaseQuantity())}
+              ></AddIcon>
+            </Box>
+            <DialogActions
+              sx={{
+                p: 4,
+              }}
+            >
+              <Link href={`/category/${selectedCategory}`}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    mr: 5,
+                    p: 1.5,
+                    px: 5,
+                  }}
+                  onClick={() => dispatch(addToOrder())}
+                >
+                  Add To Order
+                </Button>
+              </Link>
+              <Link href="/category/home">
+                <Button
+                  variant="outlined"
+                  color="error"
+                  sx={{
+                    py: 1.5,
+                    px: 5,
+                  }}
+                  onClick={() => dispatch(cancelItem())}
+                >
+                  Cancel Item
+                </Button>
+              </Link>
+            </DialogActions>
+          </Dialog>
+        </Box>
       </Container>
     </>
   );

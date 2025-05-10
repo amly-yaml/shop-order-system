@@ -37,8 +37,6 @@ function CategoryItems() {
                   <>
                     <HomeCategoryPage product={product}></HomeCategoryPage>
                   </>
-                ) : selectedCategory === "order" ? (
-                  <></>
                 ) : (
                   <>
                     <ProductsList product={product}></ProductsList>
