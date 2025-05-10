@@ -2,19 +2,13 @@
 import React from 'react';
 import { Box, Typography, Card, CardMedia, CardContent, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import productsData from '../../data/products.json';
 
 export default function DessertsPage() {
-  const router = useRouter();
-
-  const handleViewDetails = (Id) => {
-    router.push(`/productsDetail/${Id}`);
-  };
-
   return (
     <Box sx={{ paddingTop: 3, paddingX: 2 }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" color="#6F4F37">
         Desserts
       </Typography>
       <Box sx={{
@@ -55,6 +49,7 @@ export default function DessertsPage() {
               flexDirection: 'column',
               justifyContent: 'space-between',
               height: '100%',
+              position: 'relative', 
             }}>
               <Box>
                 <Typography variant="subtitle1" component="div" sx={{ fontWeight: 'bold' }}>
@@ -66,13 +61,20 @@ export default function DessertsPage() {
                   </Typography>
                 )}
               </Box>
-              <IconButton
-                aria-label="details"
-                sx={{ ml: 1, alignSelf: 'flex-end' }}
-                onClick={() => handleViewDetails(product.id)}
-              >
-                <AddIcon />
-              </IconButton>
+              <Link href={`/productsDetail/${product.id}`} passHref>
+                <IconButton
+                  aria-label="details"
+                  sx={{
+                    ml: 1,
+                    alignSelf: 'flex-end',
+                    position: 'absolute', 
+                    bottom: 9,         
+                    right: 8,          
+                  }}
+                >
+                  <AddIcon />
+                </IconButton>
+              </Link>
             </CardContent>
           </Card>
         ))}

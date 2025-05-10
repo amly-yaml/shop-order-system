@@ -4,6 +4,7 @@
       "name": "Chocolate Cake",
       "price": 12.90,
       "image": "/Chocolate_Cake.png",
+      "category": "desserts",
       "description": "Rich chocolate cake with layers of decadent frosting.",
       "sizes": [
         { "name": "Slice", "priceModifier": 6 },
@@ -19,12 +20,13 @@
       "name": "Cheese Cake",
       "price": 12.90,
       "image": "/cheese_cake.png",
+      "category": "desserts",
       "description": "Classic creamy cheesecake with a graham cracker crust.",
       "sizes": [
         { "name": "Slice", "priceModifier": 7 },
         { "name": "Whole", "priceModifier": 25 }
       ],
-      "sauces": [
+      "toppings": [
         { "name": "Strawberry", "price": 1.50 },
         { "name": "Caramel", "price": 1.00 }
       ]
@@ -34,8 +36,9 @@
       "name": "Croissant",
       "price": 6.00,
       "image": "/Crossant.png",
+      "category": "desserts",
       "description": "Flaky and buttery croissant.",
-      "options": [
+      "toppings": [
         { "name": "Plain", "priceModifier": 2 },
         { "name": "Chocolate Filled", "priceModifier": 1.00 }
       ]
@@ -45,6 +48,7 @@
       "name": "Chocolate Ice-cream",
       "price": 6.60,
       "image": "/ice_cream1.png",
+      "category": "desserts",
       "description": "Rich and creamy chocolate ice-cream.",
       "sizes": [
         { "name": "Single Scoop", "priceModifier": 3 },
@@ -59,6 +63,7 @@
       "name": "Strawberry Ice-cream",
       "price": 6.60,
       "image": "/ice_cream2.png",
+      "category": "desserts",
       "description": "Sweet and refreshing strawberry ice-cream.",
       "sizes": [
         { "name": "Single Scoop", "priceModifier": 3 },
@@ -70,6 +75,7 @@
       "name": "Vanilla Ice-cream",
       "price": 6.60,
       "image": "/ice_cream.png",
+      "category": "desserts",
       "description": "Classic smooth vanilla ice-cream.",
       "sizes": [
         { "name": "Single Scoop", "priceModifier": 3 },

@@ -1,4 +1,3 @@
-// components/ShopCategoryList.js
 import React from 'react';
 
 const ShopCategoryList = ({ categories, onSelect, selected }) => (

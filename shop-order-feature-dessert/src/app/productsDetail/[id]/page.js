@@ -1,31 +1,53 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { Box, Typography, Button, IconButton, Tabs, Tab, Grid, styled } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Image from 'next/image';
-import productsData from '../../../data/products.json';
+"use client";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import {
+  Box,
+  Typography,
+  Button,
+  IconButton,
+  Tabs,
+  Tab,
+  Grid,
+  styled,
+} from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Image from "next/image";
+import productsData from "../../../data/products.json";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { addToOrder } from "../../../../redux/orderSlice";
 
 
 const OptionButton = styled(Button)(({ theme }) => ({
   marginRight: theme.spacing(1),
   marginBottom: theme.spacing(1),
-  border: `1px solid ${theme.palette.divider}`,
+  border: `1px solid #D3D3D3`, 
   borderRadius: theme.spacing(2),
-  '&.selected': {
-    backgroundColor: '#A0522D', 
-    color: theme.palette.common.white,
-    borderColor: '#A0522D', 
+  backgroundColor: "#FFCC80", 
+  color: "#2D2D2D", 
+  "&.selected": {
+    backgroundColor: "#6F4F37",
+    color: "#FFFFFF", 
+    borderColor: "#6F4F37",
+  },
+  "&:hover": {
+    backgroundColor: "#FFB74D",
+    color: "#6F4F37", 
   },
 }));
 
+
 const CustomTab = styled(Tab)(({ theme }) => ({
-  textTransform: 'none',
+  textTransform: "none",
   fontWeight: theme.typography.fontWeightRegular,
-  '&.Mui-selected': {
+  color: "#6F4F37",
+  "&.Mui-selected": {
     fontWeight: theme.typography.fontWeightMedium,
+    color: "#6F4F37",
   },
 }));
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -38,11 +60,7 @@ function TabPanel(props) {
       aria-labelledby={`custom-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 2 }}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 2 }}>{children}</Box>}
     </div>
   );
 }
@@ -50,21 +68,22 @@ function TabPanel(props) {
 function a11yProps(index) {
   return {
     id: `custom-tab-${index}`,
-    'aria-controls': `custom-tabpanel-${index}`,
+    "aria-controls": `custom-tabpanel-${index}`,
   };
 }
 
-export default function ProductDetailPage() {
+ function ProductDetailPage() {
   const { id } = useParams();
   const router = useRouter();
   const [product, setProduct] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
-  const [selectedOptions, setSelectedOptions] = useState({}); 
+  const [selectedOptions, setSelectedOptions] = useState({});
   const [tabValue, setTabValue] = useState(0);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const findProduct = () => {
-      const foundProduct = productsData.find(item => item.id.toString() === id);
+      const foundProduct = productsData.find((item) => item.id.toString() === id);
       setProduct(foundProduct);
     };
 
@@ -76,23 +95,37 @@ export default function ProductDetailPage() {
   };
 
   const handleOptionSelect = (optionType, optionName) => {
-    setSelectedOptions({
-      ...selectedOptions,
-      [optionType]: selectedOptions[optionType] === optionName ? null : optionName,
-    });
+    setSelectedOptions((prevOptions) => ({
+      ...prevOptions,
+      [optionType]: prevOptions[optionType] === optionName ? null : optionName,
+    }));
   };
 
   const handleMultiOptionSelect = (optionType, optionName) => {
-    setSelectedOptions({
-      ...selectedOptions,
-      [optionType]: selectedOptions[optionType]?.includes(optionName)
-        ? selectedOptions[optionType].filter((o) => o !== optionName)
-        : [...(selectedOptions[optionType] || []), optionName],
-    });
+    setSelectedOptions((prevOptions) => ({
+      ...prevOptions,
+      [optionType]: prevOptions[optionType]?.includes(optionName)
+        ? prevOptions[optionType].filter((o) => o !== optionName)
+        : [...(prevOptions[optionType] || []), optionName],
+    }));
   };
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
+  };
+
+  const handleAddToOrder = () => {
+    if (product) {
+      const itemToAdd = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        size: selectedSize,
+        options: selectedOptions,
+        quantity: 1,
+      };
+      dispatch(addToOrder(itemToAdd));
+    }
   };
 
   if (!product) {
@@ -102,12 +135,10 @@ export default function ProductDetailPage() {
   const customizationTabs = [
     { label: 'Sizes', key: 'sizes' },
     { label: 'Toppings', key: 'toppings' },
-    { label: 'Sauces', key: 'sauces' },
-   
   ];
 
   return (
-    <Box sx={{ p: 3 , bgcolor: '#f0f0f0', borderRadius: 10}}>
+    <Box sx={{ p: 3, bgcolor: '#FFF8E1', borderRadius: 10 }}>
       <IconButton onClick={() => router.back()} sx={{ mb: 2 }}>
         <ArrowBackIcon />
       </IconButton>
@@ -125,9 +156,8 @@ export default function ProductDetailPage() {
           )}
         </Box>
 
-
         <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="h5" component="div" gutterBottom>
+          <Typography variant="h5" component="div" gutterBottom sx={{ color: '#6F4F37' }}>
             {product.name}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" gutterBottom>
@@ -137,15 +167,13 @@ export default function ProductDetailPage() {
             {product.description || 'No description available.'}
           </Typography>
 
-          {/* Customization Tabs */}
           <Box sx={{ width: '100%', mt: 2 }}>
-            <Tabs value={tabValue} onChange={handleTabChange} aria-label="customization tabs" TabIndicatorProps={{ style: { backgroundColor: '#A0522D' } }}>
+            <Tabs value={tabValue} onChange={handleTabChange} aria-label="customization tabs" TabIndicatorProps={{ style: { backgroundColor: '#6F4F37' } }}>
               {customizationTabs.map((tab, index) => (
                 <CustomTab key={tab.key} label={tab.label} {...a11yProps(index)} />
               ))}
             </Tabs>
 
-            {/* Tab Panels */}
             {customizationTabs.map((tab, index) => (
               <TabPanel key={tab.key} value={tabValue} index={index}>
                 <Grid container spacing={2}>
@@ -181,11 +209,24 @@ export default function ProductDetailPage() {
             ))}
           </Box>
 
-          <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-            Add to Cart
-          </Button>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Button variant="contained" sx={{ mt: 2, mr: 3, backgroundColor: "#6F4F37", color: "#fff" }} onClick={handleAddToOrder}>
+              Add to Order
+            </Button>
+            <Link href="/my-orders" style={{ textDecoration: "none" }}>
+              <Button variant="contained" sx={{ mt: 2, backgroundColor: "#FFCC80", color: "#2D2D2D" }}>
+                Go to My Orders
+              </Button>
+            </Link>
+            <Link href="/" style={{ textDecoration: "none", marginLeft: 10 }}>
+              <Button variant="contained" sx={{ mt: 2, backgroundColor: "#6F4F37", color: "#fff" }}>
+                Cancel Item
+              </Button>
+            </Link>
+          </Box>
         </Box>
       </Box>
     </Box>
   );
 }
+export default ProductDetailPage;
