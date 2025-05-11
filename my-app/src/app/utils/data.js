@@ -107,49 +107,49 @@ export const products = {
       id: 0,
       title: "Lemonade",
       image:
-        "https://i.pinimg.com/736x/75/ff/4b/75ff4bd9c9368c0b27f80988026bdb4a.jpg",
+        "https://i.pinimg.com/736x/ef/26/1b/ef261bc9d15cce5bb8f0d36eb01b5fa4.jpg",
       price: "12.30",
     },
     {
       id: 1,
       title: "Iced tea",
       image:
-        "https://i.pinimg.com/736x/96/ee/d9/96eed9822024adfcf31109821b87ab2d.jpg",
+        "https://i.pinimg.com/736x/7a/9c/39/7a9c39b2710309b3799803dbc9479edb.jpg",
       price: "12.30",
     },
     {
       id: 2,
-      title: "Orange Juice",
+      title: "Orange",
       image:
-        "https://i.pinimg.com/736x/8c/3f/a4/8c3fa4a775c6c64ae8438119fcf278e0.jpg",
+        "https://i.pinimg.com/736x/cc/98/38/cc9838758617204ba8f25ce37ce42750.jpg",
       price: "12.30",
     },
     {
       id: 3,
-      title: "Apple Juice",
+      title: "Strawberry",
       image:
-        "https://i.pinimg.com/736x/b3/0a/8f/b30a8f1a86aac9d34887a876b8f2e55b.jpg",
+        "https://i.pinimg.com/736x/cd/40/cc/cd40ccbf5301f74da385a1e16c36a22e.jpg",
       price: "12.30",
     },
     {
       id: 3,
-      title: "Mango Juice",
+      title: "Mango",
       image:
-        "https://i.pinimg.com/736x/b3/0a/8f/b30a8f1a86aac9d34887a876b8f2e55b.jpg",
+        "https://i.pinimg.com/736x/84/a5/b5/84a5b568cf035fd6edfa36e70ce4b258.jpg",
       price: "12.30",
     },
     {
       id: 3,
-      title: "Watermalon Juice",
+      title: "Watermalon",
       image:
-        "https://i.pinimg.com/736x/b3/0a/8f/b30a8f1a86aac9d34887a876b8f2e55b.jpg",
+        "https://i.pinimg.com/736x/03/ab/50/03ab506cdba77915af13396784473c08.jpg",
       price: "12.30",
     },
     {
       id: 3,
       title: "Hot Chocolate",
       image:
-        "https://i.pinimg.com/736x/b3/0a/8f/b30a8f1a86aac9d34887a876b8f2e55b.jpg",
+        "https://i.pinimg.com/736x/00/74/e1/0074e1c90926e0e8858f7e2b13150904.jpg",
       price: "12.30",
     },
   ],
@@ -499,8 +499,8 @@ export const itemProducts = [
       id: 4,
       name: "Lemonade",
       image:
-        "https://i.pinimg.com/736x/c9/c4/f7/c9c4f73587fef7d3e9f6d07671648fb3.jpg",
-      choice: ["100%", "80%", "50%", "30%"],
+        "https://i.pinimg.com/736x/ef/26/1b/ef261bc9d15cce5bb8f0d36eb01b5fa4.jpg",
+      choice: ["Less sugar", "Normal", "Sweet", "Extra Sweet"],
       size: [
         {
           name: "Short",
@@ -577,8 +577,8 @@ export const itemProducts = [
       id: 4,
       name: "Iced Tea",
       image:
-        "https://i.pinimg.com/736x/c9/c4/f7/c9c4f73587fef7d3e9f6d07671648fb3.jpg",
-      choice: ["100%", "80%", "50%", "30%"],
+        "https://i.pinimg.com/736x/da/98/9f/da989f6bac8c3cfe401f28a828a120fb.jpg",
+      choice: ["Less sugar", "Normal", "Sweet", "Extra Sweet"],
       size: [
         {
           name: "Short",
@@ -651,12 +651,12 @@ export const itemProducts = [
         },
       ],
     },
-    orangejuice: {
+    orange: {
       id: 4,
       name: "Orange Juice",
       image:
-        "https://i.pinimg.com/736x/c9/c4/f7/c9c4f73587fef7d3e9f6d07671648fb3.jpg",
-      choice: ["100%", "80%", "50%", "30%"],
+        "https://i.pinimg.com/736x/cc/98/38/cc9838758617204ba8f25ce37ce42750.jpg",
+      choice: ["Less sugar", "Normal", "Sweet", "Extra Sweet"],
       size: [
         {
           name: "Short",
@@ -673,43 +673,58 @@ export const itemProducts = [
       ],
       toppings: [
         {
-          name: "Ice",
-          image: "/images/brown-sugar(1).png",
-          price: "0",
+          name: "Add Mint",
+          image: "/images/mint.png",
+          price: "0.50",
         },
         {
-          name: "No Ice",
-          image: "/images/honey(1).png",
-          price: "0",
-        },
-        {
-          name: "Soda",
-          image: "/images/whipped-cream.png",
+          name: "Add Lemon",
+          image: "/images/lemon.png",
           price: "0.80",
         },
         {
-          name: "Orignal",
-          image: "/images/block.png",
-          price: "0.00",
+          name: "Add Lime",
+          image: "/images/lime.png",
+          price: "0.67",
         },
         {
-          name: "Smoothies",
-          image: "/images/syrup.png",
-          price: "0.90",
+          name: "Grass Jelly",
+          image: "/images/grass-jelly.png",
+          price: "0.58",
+        },
+        {
+          name: "Honey Syrup",
+          image: "/images/honey(1).png",
+          price: "1.75",
         },
         {
           name: "Sparkling water",
-          image: "/images/hazelnut.png",
+          image: "/images/sparkling-drink.png",
           price: "1.20",
+        },
+        {
+          name: "Soda",
+          image: "/images/soft-drink.png",
+          price: "1.20",
+        },
+        {
+          name: "Original",
+          image: "/images/orange-juice.png",
+          price: "0",
+        },
+        {
+          name: "Smoothies",
+          image: "/images/smoothie.png",
+          price: "1.90",
         },
       ],
     },
-    applejuice: {
+    strawberry: {
       id: 4,
       name: "Apple Juice",
       image:
-        "https://i.pinimg.com/736x/c9/c4/f7/c9c4f73587fef7d3e9f6d07671648fb3.jpg",
-      choice: ["100%", "80%", "50%", "30%"],
+        "https://i.pinimg.com/736x/cd/40/cc/cd40ccbf5301f74da385a1e16c36a22e.jpg",
+      choice: ["Less sugar", "Normal", "Sweet", "Extra Sweet"],
       size: [
         {
           name: "Short",
@@ -726,43 +741,58 @@ export const itemProducts = [
       ],
       toppings: [
         {
-          name: "Ice",
-          image: "/images/brown-sugar(1).png",
-          price: "0",
+          name: "Add Mint",
+          image: "/images/mint.png",
+          price: "0.50",
         },
         {
-          name: "No Ice",
-          image: "/images/honey(1).png",
-          price: "0",
-        },
-        {
-          name: "Soda",
-          image: "/images/whipped-cream.png",
+          name: "Add Lemon",
+          image: "/images/lemon.png",
           price: "0.80",
         },
         {
-          name: "Orignal",
-          image: "/images/block.png",
-          price: "0.00",
+          name: "Add Lime",
+          image: "/images/lime.png",
+          price: "0.67",
         },
         {
-          name: "Smoothies",
-          image: "/images/syrup.png",
-          price: "0.90",
+          name: "Grass Jelly",
+          image: "/images/grass-jelly.png",
+          price: "0.58",
+        },
+        {
+          name: "Honey Syrup",
+          image: "/images/honey(1).png",
+          price: "1.75",
         },
         {
           name: "Sparkling water",
-          image: "/images/hazelnut.png",
+          image: "/images/sparkling-drink.png",
           price: "1.20",
+        },
+        {
+          name: "Soda",
+          image: "/images/soft-drink.png",
+          price: "1.20",
+        },
+        {
+          name: "Original",
+          image: "/images/orange-juice.png",
+          price: "0",
+        },
+        {
+          name: "Smoothies",
+          image: "/images/smoothie.png",
+          price: "1.90",
         },
       ],
     },
-    mangojuice: {
+    mango: {
       id: 4,
       name: "Mango Juice",
       image:
-        "https://i.pinimg.com/736x/c9/c4/f7/c9c4f73587fef7d3e9f6d07671648fb3.jpg",
-      choice: ["100%", "80%", "50%", "30%"],
+        "https://i.pinimg.com/736x/84/a5/b5/84a5b568cf035fd6edfa36e70ce4b258.jpg",
+      choice: ["Less sugar", "Normal", "Sweet", "Extra Sweet"],
       size: [
         {
           name: "Short",
@@ -779,43 +809,58 @@ export const itemProducts = [
       ],
       toppings: [
         {
-          name: "Ice",
-          image: "/images/brown-sugar(1).png",
-          price: "0",
+          name: "Add Mint",
+          image: "/images/mint(1).png",
+          price: "0.50",
         },
         {
-          name: "No Ice",
-          image: "/images/honey(1).png",
-          price: "0",
-        },
-        {
-          name: "Soda",
-          image: "/images/whipped-cream.png",
+          name: "Add Lemon",
+          image: "/images/lemon.png",
           price: "0.80",
         },
         {
-          name: "Orignal",
-          image: "/images/block.png",
-          price: "0.00",
+          name: "Add Lime",
+          image: "/images/lime.png",
+          price: "0.67",
         },
         {
-          name: "Smoothies",
-          image: "/images/syrup.png",
-          price: "0.90",
+          name: "Grass Jelly",
+          image: "/images/grass-jelly.png",
+          price: "0.58",
+        },
+        {
+          name: "Honey Syrup",
+          image: "/images/honey(1).png",
+          price: "1.75",
         },
         {
           name: "Sparkling water",
-          image: "/images/hazelnut.png",
+          image: "/images/sparkling-drink.png",
           price: "1.20",
+        },
+        {
+          name: "Soda",
+          image: "/images/soft-drink.png",
+          price: "1.20",
+        },
+        {
+          name: "Original",
+          image: "/images/mango-juice.png",
+          price: "0",
+        },
+        {
+          name: "Smoothies",
+          image: "/images/mango.png",
+          price: "1.90",
         },
       ],
     },
-    watermalonjuice: {
+    watermalon: {
       id: 4,
       name: "Watermalon Juice",
       image:
-        "https://i.pinimg.com/736x/c9/c4/f7/c9c4f73587fef7d3e9f6d07671648fb3.jpg",
-      choice: ["100%", "80%", "50%", "30%"],
+        "https://i.pinimg.com/736x/03/ab/50/03ab506cdba77915af13396784473c08.jpg",
+      choice: ["Less sugar", "Normal", "Sweet", "Extra Sweet"],
       size: [
         {
           name: "Short",
@@ -832,34 +877,49 @@ export const itemProducts = [
       ],
       toppings: [
         {
-          name: "Ice",
-          image: "/images/brown-sugar(1).png",
-          price: "0",
+          name: "Add Mint",
+          image: "/images/mint(1).png",
+          price: "0.50",
         },
         {
-          name: "No Ice",
-          image: "/images/honey(1).png",
-          price: "0",
-        },
-        {
-          name: "Soda",
-          image: "/images/whipped-cream.png",
+          name: "Add Lemon",
+          image: "/images/lemon.png",
           price: "0.80",
         },
         {
-          name: "Orignal",
-          image: "/images/block.png",
-          price: "0.00",
+          name: "Add Lime",
+          image: "/images/lime.png",
+          price: "0.67",
         },
         {
-          name: "Smoothies",
-          image: "/images/syrup.png",
-          price: "0.90",
+          name: "Grass Jelly",
+          image: "/images/grass-jelly.png",
+          price: "0.58",
+        },
+        {
+          name: "Honey Syrup",
+          image: "/images/honey(1).png",
+          price: "1.75",
         },
         {
           name: "Sparkling water",
-          image: "/images/hazelnut.png",
+          image: "/images/sparkling-drink.png",
           price: "1.20",
+        },
+        {
+          name: "Soda",
+          image: "/images/soft-drink.png",
+          price: "1.20",
+        },
+        {
+          name: "Original",
+          image: "/images/orange-juice.png",
+          price: "0",
+        },
+        {
+          name: "Smoothies",
+          image: "/images/smoothie.png",
+          price: "1.90",
         },
       ],
     },
@@ -867,8 +927,8 @@ export const itemProducts = [
       id: 4,
       name: "Hot Chocolate",
       image:
-        "https://i.pinimg.com/736x/c9/c4/f7/c9c4f73587fef7d3e9f6d07671648fb3.jpg",
-      choice: ["100%", "80%", "50%", "30%"],
+        "https://i.pinimg.com/736x/00/74/e1/0074e1c90926e0e8858f7e2b13150904.jpg",
+      choice: ["Less sugar", "Normal", "Sweet", "Extra Sweet"],
       size: [
         {
           name: "Short",
