@@ -49,10 +49,6 @@ export const categories = [
     slug: "cake",
     name: "Cake",
   },
-  // {
-  //   slug: "myorder",
-  //   name: "My Order",
-  // },
 ];
 
 export const products = {
@@ -577,9 +573,9 @@ export const itemProducts = [
         },
       ],
     },
-    icetea: {
+    icedtea: {
       id: 4,
-      name: "Ice Tea",
+      name: "Iced Tea",
       image:
         "https://i.pinimg.com/736x/c9/c4/f7/c9c4f73587fef7d3e9f6d07671648fb3.jpg",
       choice: ["100%", "80%", "50%", "30%"],

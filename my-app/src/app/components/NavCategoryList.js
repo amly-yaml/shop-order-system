@@ -131,7 +131,7 @@ function NavCategoryList({ landingPage, landingCategory, window }) {
       <AppBar
         position="fixed"
         sx={{
-          display: { xs: "block", sm: "block", md: "none" }, // ✅ Show only on xs/sm
+          display: { xs: "block", sm: "none", md: "none" }, // ✅ Show only on xs
           // width: "100%", // Full width on small screens
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },

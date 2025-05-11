@@ -44,7 +44,6 @@ export default function ProductsItem() {
     return (
       <Box>
         <Typography variant="h4" sx={{ p: 3 }}>
-          {" "}
           No item found.
         </Typography>
       </Box>
@@ -79,30 +78,37 @@ export default function ProductsItem() {
 
   return (
     <>
-      <Container disableGutters sx={{ width: "1000px" }}>
+      <Container
+        disableGutters
+        sx={{
+          maxWidth: "1000px",
+          width: "100%",
+          mx: "auto", // center container horizontally
+          my: 6,
+          px: 2,
+        }}
+      >
         <Grid container spacing={2}>
-          <Grid size={{ xs: 12, sm: 3, md: 5, lg: 6 }}>
-            <Box
-              sx={{
-                mx: 5,
-              }}
-            >
+          <Grid item size={{ xs: 12, sm: 12, md: 5, lg: 6 }}>
+            <Box>
               <Image
                 src={foundItem.image}
                 alt="image"
                 width={500}
                 height={500}
                 style={{
-                  width: 250,
-                  height: 250,
-                  margin: "0 auto",
+                  width: 230,
+                  height: 230,
+                  margin: "auto",
                   objectFit: "cover",
+                  display: "flex",
+                  justifyContent: "center",
                 }}
               ></Image>
             </Box>
           </Grid>
-          <Grid size={{ xs: 12, sm: 9, md: 7, lg: 6 }}>
-            <Box sx={{ my: 5 }}>
+          <Grid item size={{ xs: 12, sm: 12, md: 7, lg: 6 }}>
+            <Box sx={{ m: 2 }}>
               <Typography variant="h5">{foundItem.name}</Typography>
               {/* <Typography variant="h5">{foundItem.price}</Typography> */}
               <Box
@@ -135,7 +141,7 @@ export default function ProductsItem() {
                 <Typography variant="h6">Size options</Typography>
                 <Box
                   sx={{
-                    my: 2,
+                    my: 1,
                     // display: "flex",
                     // justifyContent: "left",
                     // flexWrap: "wrap", // optional: if too many buttons, they wrap
@@ -159,7 +165,7 @@ export default function ProductsItem() {
                               textAlign: "center",
                             }}
                           >
-                            {sizeItem.price}
+                            $ {sizeItem.price}
                           </Typography>
                         </Box>
                       );
@@ -179,13 +185,26 @@ export default function ProductsItem() {
               backgroundColor: green[400],
             };
             return (
-              <Grid key={index} item size={{ xs: 12, sm: 4, md: 3, lg: 2 }}>
-                <Card
+              <Grid
+                key={index}
+                item
+                // xs={12}
+                // sm={6}
+                // md={4}
+                // lg={4}
+                size={{ xs: 12, sm: 6, md: 3, lg: 2 }}
+              >
+                <Box
                   sx={{
-                    my: 2,
-                    py: 1.5,
-                    borderRadius: 3,
                     textAlign: "center",
+                    boxShadow: 1,
+                    borderRadius: 2,
+                    py: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
+                    overflow: "hidden",
+                    wordBreak: "break-all",
                     cursor: "pointer",
                     ...isSelected,
                   }}
@@ -197,24 +216,25 @@ export default function ProductsItem() {
                     width={500}
                     height={500}
                     style={{
-                      width: 80,
-                      height: 80,
+                      width: 70,
+                      height: 70,
                       margin: "0 auto",
                       objectFit: "contain",
                       marginBottom: "10px",
                     }}
                   />
                   <Divider />
-
                   <Box
                     sx={{
                       my: 1,
                     }}
                   >
                     <Typography>{topping.name}</Typography>
-                    <Typography variant="subtitle2">{topping.price}</Typography>
+                    <Typography variant="subtitle2">
+                      ${topping.price}
+                    </Typography>
                   </Box>
-                </Card>
+                </Box>
               </Grid>
             );
           })}
@@ -222,6 +242,7 @@ export default function ProductsItem() {
         <Box
           sx={{
             my: 3,
+            width: "100%", // make sure it spans full width
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -230,7 +251,6 @@ export default function ProductsItem() {
           <Button
             variant="contained"
             sx={{
-              mr: 5,
               py: 1.5,
               px: 3,
             }}
@@ -249,12 +269,12 @@ export default function ProductsItem() {
           >
             <DialogTitle
               id="alert-dialog-title"
-              variant="h4"
+              variant="h5"
               sx={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                p: 3,
+                p: 2,
                 //border: `1px solid ${grey[500]}`,
               }}
             >
@@ -265,7 +285,7 @@ export default function ProductsItem() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                p: 3,
+                p: 2,
                 //border: `1px solid ${grey[500]}`,
               }}
             >

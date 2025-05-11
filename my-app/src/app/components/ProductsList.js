@@ -1,33 +1,18 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import React, { useEffect } from "react";
-import AddIcon from "@mui/icons-material/Add";
-import { green } from "@mui/material/colors";
 import Link from "next/link";
-import ProductsItem from "./ProductsItem";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addToCart,
-  setSelectedItem,
-  startNewOrder,
-} from "../redux/productSlice";
+import { startNewOrder } from "../redux/productSlice";
 
 export default function ProductsList({ product }) {
   const { selectedCategory } = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  const changeColor = {
-    "&:hover": {
-      color: "#fff",
-      background: `${green[400]}`,
-    },
-  };
 
   return (
     <>
       <Link
-        href={`/category/${selectedCategory}/${product.title
-          .toLowerCase()
-          .replace(/\s+/g, "")}`}
+        href={`/category/${selectedCategory}/${product.title.toLowerCase()}`}
         onClick={() => dispatch(startNewOrder(product))}
       >
         <Image

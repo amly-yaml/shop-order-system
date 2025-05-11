@@ -9,8 +9,9 @@ import { useDispatch } from "react-redux";
 export default function page() {
   const dispatch = useDispatch();
   const { text, item } = useParams();
+  const itemDecodeName = decodeURIComponent(item).replace(/\s+/g, "");
   useEffect(() => {
-    dispatch(setSelectedItem(item));
+    dispatch(setSelectedItem(itemDecodeName));
   });
 
   return (
