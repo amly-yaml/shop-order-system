@@ -28,7 +28,7 @@ export const productsSlice = createSlice({
         size: null,
         basePrice: 0,
         addOns: [],
-        quantity: 0,
+        quantity: 1,
       };
     },
     chooseType: (state, action) => {
@@ -61,7 +61,7 @@ export const productsSlice = createSlice({
       }
     },
     decreaseQuantity: (state) => {
-      if (state.currentOrder && state.currentOrder.quantity > 0) {
+      if (state.currentOrder && state.currentOrder.quantity > 1) {
         state.currentOrder.quantity -= 1;
       }
     },
