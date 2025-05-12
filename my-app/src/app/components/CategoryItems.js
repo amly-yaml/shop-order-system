@@ -9,12 +9,9 @@ import HomeCategoryPage from "./HomeCategoryPage";
 
 function CategoryItems() {
   const [selectedPage, setSelectedPage] = useState("home");
-  const { status, items, selectedCategory } = useSelector(
-    (state) => state.products
-  );
+  const { selectedCategory } = useSelector((state) => state.products);
   // const products = items.products;
   console.log("products", selectedCategory);
-  if (status === "loading") return <p>Loading...</p>;
   const selectedCategoryProduct = selectedCategory === selectedPage;
   // console.log("items", items);
 

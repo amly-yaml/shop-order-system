@@ -2,10 +2,15 @@ import { Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { itemProducts } from "../utils/data";
 
 export default function HomeCategoryPage({ product }) {
+  console.log("productList", product);
   return (
     <>
+      {/* {itemProducts && itemProducts.map((product, index) => {
+
+      })} */}
       <Link href={`/category/${product.slug}`}>
         <Typography variant="h6" sx={{ my: 2, p: 2 }}>
           {product.title}

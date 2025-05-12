@@ -29,7 +29,7 @@ import { green, grey } from "@mui/material/colors";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
-export default function ProductsItem() {
+export default function ProductsDetailItem() {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const { selectedCategory, selectedItem, currentOrder } = useSelector(
@@ -53,7 +53,7 @@ export default function ProductsItem() {
     return (
       <Box sx={{ p: 5 }}>
         <Typography variant="h4">
-          Please select an order first 🍰🧋🥤 !!!
+          Please select an order (coffee, non-coffee, cake) first 🍰🧋🥤 !!!
         </Typography>
       </Box>
     );
