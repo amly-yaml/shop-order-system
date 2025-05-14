@@ -1,7 +1,7 @@
 export const images = [
   "https://images.pexels.com/photos/683039/pexels-photo-683039.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  "https://images.pexels.com/photos/3740237/pexels-photo-3740237.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  "https://images.pexels.com/photos/982612/pexels-photo-982612.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "https://images.pexels.com/photos/1343504/pexels-photo-1343504.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "https://images.pexels.com/photos/2221925/pexels-photo-2221925.jpeg?auto=compress&cs=tinysrgb&w=1200",
 ];
 
 export const itemData = [
@@ -155,55 +155,37 @@ export const products = {
   ],
   dessert: [
     {
-      id: 0,
-      title: "Lemonade",
+      title: "Chocolate Cake",
       image:
-        "https://i.pinimg.com/736x/ef/26/1b/ef261bc9d15cce5bb8f0d36eb01b5fa4.jpg",
-      price: "45.39",
+        "/images/Chocolate_Cake.png",
+      price: "12.90",
     },
     {
-      id: 1,
-      title: "Iced tea",
+      title: "Cheese Cake",
       image:
-        "https://i.pinimg.com/736x/7a/9c/39/7a9c39b2710309b3799803dbc9479edb.jpg",
-      price: "40.39",
+        "/images/cheese_cake.png",
+      price: "12.90",
     },
     {
-      id: 2,
-      title: "Orange",
+      title: "Croissant",
       image:
-        "https://i.pinimg.com/736x/cc/98/38/cc9838758617204ba8f25ce37ce42750.jpg",
-      price: "42.99",
+        "/images/Crossant.png",
+      price: "6.30",
     },
     {
-      id: 3,
-      title: "Strawberry",
+      title: "Chocolate Ice-cream",
       image:
-        "https://i.pinimg.com/736x/cd/40/cc/cd40ccbf5301f74da385a1e16c36a22e.jpg",
-      price: "47.59",
+        "/images/ice_cream1.png",
+      price: "6.60",
     },
     {
-      id: 3,
-      title: "Mango",
+      title: "Strawberry Ice-cream",
       image:
-        "https://i.pinimg.com/736x/84/a5/b5/84a5b568cf035fd6edfa36e70ce4b258.jpg",
-      price: "41.39",
-    },
-    {
-      id: 3,
-      title: "Watermelon",
-      image:
-        "https://i.pinimg.com/736x/03/ab/50/03ab506cdba77915af13396784473c08.jpg",
-      price: "41.39",
-    },
-    {
-      id: 3,
-      title: "Hot Chocolate",
-      image:
-        "https://i.pinimg.com/736x/00/74/e1/0074e1c90926e0e8858f7e2b13150904.jpg",
-      price: "48.99",
+        "/images/ice_cream2.png",
+      price: "6.60",
     },
   ],
+
 };
 
 export const itemProducts = [
@@ -941,5 +923,139 @@ export const itemProducts = [
         },
       ],
     },
+     chocolatecake: {
+      id: 1,
+      name: "Chocolate Cake",
+      image:
+        "/images/Chocolate_Cake.png",
+      choice: null,
+      size: [
+        {
+          name: "Slice",
+          price: "12.6",
+        },
+        {
+          name: "Whole",
+          price: "12.60",
+        },
+      ],
+      toppings: [
+        {
+          name: "Chocolate Shavings",
+          price: "1.00",
+        },
+        {
+          name: "Whipped Cream",
+          price: "0.50",
+        },
+       
+      ],
+    },
+    cheesecake: {
+      id: 2,
+      name: "Cheese Cake",
+      image:
+        "/images/cheese_cake.png",
+      choice: null,
+      size: [
+        {
+          name: "Slice",
+          price: "12.6",
+        },
+        {
+          name: "Whole",
+          price: "12.60",
+        },
+      ],
+      toppings: [
+        {
+          name: "Strawberry",
+          price: "1.00",
+        },
+        {
+          name: "Caramel",
+          price: "0.50",
+        },
+        
+      ],
+    },
+    croissant: {
+      id: 3,
+      name: "Croissant",
+      image:
+        "/images/Crassant.png",
+      choice: null,
+      size: null,
+      toppings: [
+      {
+        name: "Plain",
+        price: "2.00",
+      },
+      {
+        name: "Chocolate Filled",
+        price: "2.50",
+      }
+    ],
+
+    },
+    chocolateIceCream : {
+      id: 4,
+      name: "Chocolate Ice-cream ",
+      image:
+        "/images/ice_cream1.png",
+      choice: null,
+     size: [
+      { 
+          name: "Single Scoop",
+          price: "3.00",
+      },
+      { 
+          name: "Double Scoop",
+          price: "2.00",
+      },
+
+      ],
+      toppings: [
+      {
+        name: "Chocolate Sprinkles",
+        price: "1.00",
+      },
+      {
+        name: "Plain",
+        price: "0.50",
+      }
+    ],
+
+    },
+    strawberryIceCream: {
+      id: 4,
+      name: "Strawberry Ice-cream",
+      image:
+        "/images/ice_cream2.png",
+      choice: null,
+      size: [
+        { 
+            name: "Single Scoop",
+            price: "3.00",
+        },
+        { 
+            name: "Double Scoop",
+            price: "2.00",
+        },
+    ],
+
+      toppings: [
+          {
+            name: "Chocolate Sprinkles",
+            price: "1..00",
+          },
+          {
+            name: "Plain",
+            price: "0.50",
+          }
+    ],
+
+    },
+
   },
 ];

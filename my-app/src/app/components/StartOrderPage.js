@@ -1,94 +1,23 @@
-// import * as React from "react";
-// import ImageList from "@mui/material/ImageList";
-// import ImageListItem from "@mui/material/ImageListItem";
-// import { Typography } from "@mui/material";
-// import Link from "next/link";
-// import { itemData } from "../utils/data";
-
-// function srcset(image, size, rows = 1, cols = 1) {
-//   return {
-//     src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-//     srcSet: `${image}?w=${size * cols}&h=${
-//       size * rows
-//     }&fit=crop&auto=format&dpr=2 2x`,
-//   };
-// }
-
-// export default function StartOrderPage() {
-//   return (
-//     <>
-//       <ImageList
-//         sx={{
-//           width: "auto",
-//           height: "auto",
-//           objectFit: "contain",
-//           overflowY: "scroll",
-//         }}
-//         variant="quilted"
-//         cols={4}
-//         rowHeight={402}
-//       >
-//         {itemData.map((item) => (
-//           <ImageListItem
-//             key={item.img}
-//             cols={item.cols || 1}
-//             rows={item.rows || 1}
-//           >
-//             <img
-//               {...srcset(item.img, 121, item.rows, item.cols)}
-//               alt={item.title}
-//               loading="lazy"
-//             />
-//           </ImageListItem>
-//         ))}
-//         <ImageListItem cols={2}>
-//           <Link href="/order" passHref legacyBehavior>
-//             <Typography
-//               component="a"
-//               variant="h3"
-//               align="center"
-//               sx={{
-//                 width: "100%",
-//                 height: "100%", // make it fill the row height
-//                 display: "flex",
-//                 justifyContent: "center",
-//                 alignItems: "center",
-//                 textAlign: "center",
-//                 cursor: "pointer",
-//                 "$:hover": {
-//                   textDecoration: "underline",
-//                 },
-//               }}
-//             >
-//               Start Order
-//             </Typography>
-//           </Link>
-//         </ImageListItem>
-//       </ImageList>
-//     </>
-//   );
-// }
-
 "use client";
 import React from "react";
 import Slider from "react-slick";
-import { Box, Link, Typography } from "@mui/material";
-import Image from "next/image";
+import { Box, Button, Typography } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { images } from "../utils/data";
+import Link from "next/link";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
-      // className={className}
       style={{
         ...style,
         display: "block",
         right: "5rem",
         position: "absolute",
         top: "50%",
+        zIndex: 1,
       }}
       onClick={onClick}
     ></div>
@@ -99,7 +28,6 @@ function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
-      // className={className}
       style={{
         ...style,
         left: "5rem",
@@ -113,7 +41,7 @@ function SamplePrevArrow(props) {
 }
 
 export default function CustomSlider() {
-  var settings = {
+  const settings = {
     dots: false,
     infinite: true,
     speed: 500,
@@ -124,39 +52,113 @@ export default function CustomSlider() {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
+
   return (
-    <Box className="slider-container">
-      <Slider {...settings}>
-        {images.map((image, index) => {
-          return (
-            <React.Fragment key={index}>
-              <Image
-                src={image}
-                alt="img"
-                width={1500}
-                height={500}
-                style={{
-                  height: 700,
-                  objectFit: "cover",
-                  objectPosition: "center",
-                }}
-              />
-            </React.Fragment>
-          );
-        })}
-      </Slider>
-      <Link
-        href="/eat-option"
-        style={{ textDecoration: "none", color: "inherit" }}
+    <Box
+      className="slider-container"
+      sx={{
+        position: "relative",
+        width: "100%",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: 'hidden',
+      }}
+    >
+      <Slider {...settings}
+        style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 0,
+        }}
       >
-        <Typography
-          variant="h4"
-          mt={2}
-          sx={{ textAlign: "center", cursor: "pointer" }}
+        {images.map((image, index) => (
+          <div key={index}>
+            <div
+              style={{
+                backgroundImage: `url(${image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                width: "100%",
+                height: "100vh",
+              }}
+            />
+          </div>
+        ))}
+      </Slider>
+
+      {/* Overlay */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.3)', 
+          zIndex: 1, 
+        }}
+      />
+
+        <Box
+          sx={{
+            position: "relative",
+            zIndex: 2,
+            textAlign: "center",
+            padding: { xs: '2rem', md: '3rem' },
+            maxWidth: { xs: '90%', md: '80%', lg: '70%' },
+            margin: "0 auto",
+          }}
         >
-          Start to Order
-        </Typography>
-      </Link>
+          <Typography
+            variant="h1"
+            sx={{
+              color: "white",
+              fontWeight: "bold",
+              fontSize: { xs: '3rem', md: '4rem', lg: '5rem', },
+              marginBottom: { xs: '1rem', md: '1.5rem' },
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Brew Heaven
+          </Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              color: "white",
+              marginBottom: { xs: '1.5rem', md: '2rem' },
+              fontSize: { xs: '1.2rem', md: '1.5rem' },
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.7)',
+            }}
+          >
+            Drinks & Desserts
+          </Typography>
+          <Link href="/eat-option">
+            <Button
+              size="medium"
+              sx={{
+                backgroundColor: "#fff",
+                color: "#6F4E37",
+                padding: { xs: '0.75rem 2rem', md: '1rem 3rem' },
+                fontSize: { xs: '1rem', md: '1.2rem' },
+                borderRadius: 4,
+                "&:hover": {
+                  backgroundColor: "#6F4E37",
+                  color: "#fff",
+                },
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+              }}
+            >
+              Start to Order
+            </Button>
+          </Link>
+        </Box>
     </Box>
   );
 }
+

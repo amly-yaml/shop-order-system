@@ -1,9 +1,6 @@
 "use client";
-import * as React from "react";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import React from "react";
+import {  Grid, Typography, Box, Container } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
@@ -12,14 +9,36 @@ import { imageData } from "../utils/data";
 
 export default function OrderPage() {
   const dispatch = useDispatch();
+  
 
   const handleSelector = (title) => {
     dispatch(setPlaceToEat(title));
   };
 
   return (
-    <>
-      <Container disableGutters sx={{ width: "800px", my: 15 }}>
+    <Box
+      sx={{
+        backgroundImage: `url('https://images.pexels.com/photos/97815/pexels-photo-97815.jpeg?auto=compress&cs=tinysrgb&w=1200')`, 
+        // backgroundImage: `url('https://images.pexels.com/photos/1724194/pexels-photo-1724194.jpeg?auto=compress&cs=tinysrgb&w=1200')`, 
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh", 
+        minWidth: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        
+      }}
+    >
+      <Container disableGutters sx={{
+        maxWidth: "800px",
+        my: 15,
+        backgroundColor: 'transparent', 
+        borderRadius: '10px',
+        padding: '15px',
+        backdropFilter: 'blur(10px)', 
+        border: '1px solid #fff'
+      }}>
         <Grid
           container
           spacing={2}
@@ -30,7 +49,7 @@ export default function OrderPage() {
             textAlign: "center",
           }}
         >
-          <Typography variant="h3" sx={{ my: 7 }}>
+          <Typography variant="h3" sx={{ my: 7, color: '#fff' }}>
             Where would you like to eat?
           </Typography>
           {imageData &&
@@ -53,9 +72,10 @@ export default function OrderPage() {
                             height: 200,
                             margin: "0 auto",
                             objectFit: "cover",
+                            borderRadius: '10px'
                           }}
                         ></Image>
-                        <Typography variant="h5" sx={{ my: 5 }}>
+                        <Typography variant="h5" sx={{ my: 5, color: '#fff' }}>
                           {item.title}
                         </Typography>
                       </Box>
@@ -66,6 +86,6 @@ export default function OrderPage() {
             })}
         </Grid>
       </Container>
-    </>
+    </Box>
   );
 }

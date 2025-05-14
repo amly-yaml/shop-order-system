@@ -193,18 +193,22 @@ export default function MyOrderPage() {
         }}
       >
         <Box sx={{ display: "flex", justifyContent: "space-between", p: 3 }}>
-          <Typography variant="h4">Your Order</Typography>
+          <Typography variant="h4" sx={{ color: "#3e2723" }}>
+            Your Order
+          </Typography>
           <Link href="/category/home">
             <Button
               variant="contained"
               sx={{
-                backgroundColor: "#d7ccc8",
+                backgroundColor: "#fff",
                 color: "#3e2723",
                 fontWeight: "bold",
                 px: 4,
-                py: 1.5,
+                py: 1.3,
+                border: "2px solid #3e2723",
                 "&:hover": {
                   backgroundColor: "#bcaaa4",
+                  color: "#fff",
                 },
               }}
             >
@@ -223,7 +227,12 @@ export default function MyOrderPage() {
               <Typography
                 variant="h4"
                 sx={{
-                  fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2rem" },
+                  fontSize: {
+                    xs: "1.25rem",
+                    sm: "1.5rem",
+                    md: "2rem",
+                    color: "#3e2723",
+                  },
                   mb: 2,
                 }}
               >
@@ -253,13 +262,15 @@ export default function MyOrderPage() {
                       >
                         <Button
                           sx={{
-                            backgroundColor: "#d7ccc8",
-                            color: "#3e2723",
+                            backgroundColor: "#fff",
+                            color: "#DC143C",
                             fontWeight: "bold",
                             px: 4,
-                            py: 1.5,
+                            py: 1.3,
+                            border: "1px solid #DC143C",
                             "&:hover": {
-                              backgroundColor: "#bcaaa4",
+                              backgroundColor: "#FA8072",
+                              color: "#fff"
                             },
                           }}
                           onClick={() => dispatch(removeItemOrder(order.id))}
@@ -448,13 +459,15 @@ export default function MyOrderPage() {
                 <Button
                   variant="contained"
                   sx={{
-                    backgroundColor: "#d7ccc8",
+                    backgroundColor: "#fff",
                     color: "#3e2723",
                     fontWeight: "bold",
                     px: 4,
-                    py: 1.5,
+                    py: 1.3,
+                    border: "2px solid #3e2723",
                     "&:hover": {
                       backgroundColor: "#bcaaa4",
+                      color: "#fff",
                     },
                   }}
                   onClick={() => dispatch(clearOrder())}
@@ -467,8 +480,8 @@ export default function MyOrderPage() {
                 <Button
                   variant="contained"
                   sx={{
-                    backgroundColor: "#ffb74d",
-                    color: "#4e342e",
+                    backgroundColor: "#4e342e",
+                    color: "#fff",
                     fontWeight: "bold",
                     px: 4,
                     py: 1.5,
