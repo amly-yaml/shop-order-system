@@ -24,12 +24,13 @@ import {
   chooseType,
   decreaseQuantity,
   increaseQuantity,
+  toggleCart,
 } from "../redux/productSlice";
 import { green, grey } from "@mui/material/colors";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
-export default function ProductsItem() {
+export default function ProductsDetailItem() {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const { selectedCategory, selectedItem, currentOrder } = useSelector(
@@ -53,7 +54,7 @@ export default function ProductsItem() {
     return (
       <Box sx={{ p: 5 }}>
         <Typography variant="h4">
-          Please select an order first 🍰🧋🥤 !!!
+          Please select an order (coffee, non-coffee, cake) first 🍰🧋🥤 !!!
         </Typography>
       </Box>
     );
@@ -114,26 +115,29 @@ export default function ProductsItem() {
               <Box
                 sx={{
                   my: 3,
-                  // display: "flex",
-                  // justifyContent: "left",
-                  // flexWrap: "wrap", // optional: if too many buttons, they wrap
-                  // gap: 2,
+                  flexWrap: "wrap", // optional: if too many buttons, they wrap
                 }}
               >
                 <ButtonGroup>
-                  {foundItem.choice.map((choiceItem, index) => {
-                    const isSelected = choiceItem === currentOrder?.choice;
-                    return (
-                      <Button
-                        key={index}
-                        variant={isSelected ? "contained" : "outlined"}
-                        color={isSelected ? "success" : "primary"}
-                        onClick={() => dispatch(chooseType(choiceItem))}
-                      >
-                        {choiceItem}
-                      </Button>
-                    );
-                  })}
+                  {foundItem.choice && Array.isArray(foundItem.choice) ? (
+                    foundItem.choice.map((choiceItem, index) => {
+                      const isSelected = choiceItem === currentOrder?.choice;
+                      return (
+                        <Button
+                          key={index}
+                          variant={isSelected ? "contained" : "outlined"}
+                          color={isSelected ? "success" : "primary"}
+                          onClick={() => dispatch(chooseType(choiceItem))}
+                        >
+                          {choiceItem}
+                        </Button>
+                      );
+                    })
+                  ) : (
+                    <Typography variant="boday1">
+                      *** No choices available ***
+                    </Typography>
+                  )}
                 </ButtonGroup>
               </Box>
 
@@ -142,34 +146,38 @@ export default function ProductsItem() {
                 <Box
                   sx={{
                     my: 1,
-                    // display: "flex",
-                    // justifyContent: "left",
-                    // flexWrap: "wrap", // optional: if too many buttons, they wrap
+                    flexWrap: "wrap", // optional: if too many buttons, they wrap
                   }}
                 >
                   <ButtonGroup>
-                    {foundItem.size.map((sizeItem, index) => {
-                      const isSelected = currentOrder?.size === sizeItem.name;
-                      return (
-                        <Box key={index}>
-                          <Button
-                            variant={isSelected ? "contained" : "outlined"}
-                            color={isSelected ? "success" : "primary"}
-                            onClick={() => dispatch(chooseSize(sizeItem))}
-                          >
-                            {sizeItem.name}
-                          </Button>
-                          <Typography
-                            sx={{
-                              my: 1,
-                              textAlign: "center",
-                            }}
-                          >
-                            $ {sizeItem.price}
-                          </Typography>
-                        </Box>
-                      );
-                    })}
+                    {foundItem.size && Array.isArray(foundItem.size) ? (
+                      foundItem.size.map((sizeItem, index) => {
+                        const isSelected = currentOrder?.size === sizeItem.name;
+                        return (
+                          <Box key={index}>
+                            <Button
+                              variant={isSelected ? "contained" : "outlined"}
+                              color={isSelected ? "success" : "primary"}
+                              onClick={() => dispatch(chooseSize(sizeItem))}
+                            >
+                              {sizeItem.name}
+                            </Button>
+                            <Typography
+                              sx={{
+                                my: 1,
+                                textAlign: "center",
+                              }}
+                            >
+                              $ {sizeItem.price}
+                            </Typography>
+                          </Box>
+                        );
+                      })
+                    ) : (
+                      <Typography variant="body1">
+                        *** No sizes available ***
+                      </Typography>
+                    )}
                   </ButtonGroup>
                 </Box>
               </Box>
@@ -180,64 +188,70 @@ export default function ProductsItem() {
           Customization AddOns
         </Typography>
         <Grid container spacing={2}>
-          {foundItem.toppings.map((topping, index) => {
-            const isSelected = isSelectedTopping(topping) && {
-              backgroundColor: green[400],
-            };
-            return (
-              <Grid
-                key={index}
-                item
-                // xs={12}
-                // sm={6}
-                // md={4}
-                // lg={4}
-                size={{ xs: 12, sm: 6, md: 3, lg: 2 }}
-              >
-                <Box
-                  sx={{
-                    textAlign: "center",
-                    boxShadow: 1,
-                    borderRadius: 2,
-                    py: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "100%",
-                    overflow: "hidden",
-                    wordBreak: "break-all",
-                    cursor: "pointer",
-                    ...isSelected,
-                  }}
-                  onClick={() => dispatch(addAddOn(topping))}
+          {foundItem.toppings && Array.isArray(foundItem.toppings) ? (
+            foundItem.toppings.map((topping, index) => {
+              const isSelected = isSelectedTopping(topping) && {
+                backgroundColor: green[400],
+              };
+              return (
+                <Grid
+                  key={index}
+                  item
+                  // xs={12}
+                  // sm={6}
+                  // md={4}
+                  // lg={4}
+                  size={{ xs: 12, sm: 6, md: 3, lg: 2 }}
                 >
-                  <Image
-                    src={topping.image}
-                    alt="image"
-                    width={500}
-                    height={500}
-                    style={{
-                      width: 70,
-                      height: 70,
-                      margin: "0 auto",
-                      objectFit: "contain",
-                      marginBottom: "10px",
-                    }}
-                  />
-                  <Divider />
                   <Box
                     sx={{
-                      my: 1,
+                      textAlign: "center",
+                      boxShadow: 1,
+                      borderRadius: 2,
+                      py: 1,
+                      display: "flex",
+                      flexDirection: "column",
+                      height: "100%",
+                      overflow: "hidden",
+                      wordBreak: "break-all",
+                      cursor: "pointer",
+                      ...isSelected,
                     }}
+                    onClick={() => dispatch(addAddOn(topping))}
                   >
-                    <Typography>{topping.name}</Typography>
-                    <Typography variant="subtitle2">
-                      ${topping.price}
-                    </Typography>
+                    <Image
+                      src={topping.image}
+                      alt="image"
+                      width={500}
+                      height={500}
+                      style={{
+                        width: 70,
+                        height: 70,
+                        margin: "0 auto",
+                        objectFit: "contain",
+                        marginBottom: "10px",
+                      }}
+                    />
+                    <Divider />
+                    <Box
+                      sx={{
+                        my: 1,
+                      }}
+                    >
+                      <Typography>{topping.name}</Typography>
+                      <Typography variant="subtitle2">
+                        ${topping.price}
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
-              </Grid>
-            );
-          })}
+                </Grid>
+              );
+            })
+          ) : (
+            <Grid item xs={12}>
+              <Typography>No toppings available</Typography>
+            </Grid>
+          )}
         </Grid>
         <Box
           sx={{
@@ -323,32 +337,47 @@ export default function ProductsItem() {
                 p: 4,
               }}
             >
-              <Link href={`/category/${selectedCategory}`}>
-                <Button
-                  variant="contained"
-                  sx={{
-                    mr: 5,
-                    p: 1.5,
-                    px: 5,
-                  }}
-                  onClick={() => dispatch(addToOrder())}
-                >
-                  Add To Order
-                </Button>
-              </Link>
-              <Link href="/category/home">
-                <Button
-                  variant="outlined"
-                  color="error"
-                  sx={{
-                    py: 1.5,
-                    px: 5,
-                  }}
-                  onClick={() => dispatch(cancelItem())}
-                >
-                  Cancel Item
-                </Button>
-              </Link>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
+                  width: "100%",
+                  gap: 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Link href="/category/myorder" passHref>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      p: 1.5,
+                      px: 5,
+                      width: { xs: "100%", sm: "auto" },
+                    }}
+                    onClick={() => {
+                      dispatch(addToOrder());
+                      // dispatch(toggleCart(true));
+                    }}
+                  >
+                    Add To Order
+                  </Button>
+                </Link>
+                <Link href="/category/home" passHref>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    sx={{
+                      py: 1.5,
+                      px: 5,
+                      width: { xs: "100%", sm: "auto" },
+                    }}
+                    onClick={() => dispatch(cancelItem())}
+                  >
+                    Cancel Item
+                  </Button>
+                </Link>
+              </Box>
             </DialogActions>
           </Dialog>
         </Box>

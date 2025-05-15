@@ -21,26 +21,23 @@ export default function ProductsList({ product }) {
           width={500}
           height={500}
           style={{
-            width: 230,
-            height: 230,
+            width: 150,
+            height: 150,
             margin: "0 auto",
             objectFit: "contain",
           }}
         />
         <Box
           sx={{
-            my: 2,
-            px: 3,
+            my: 1,
+            px: 1,
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
           }}
         >
-          <Box
-            sx={{
-              textAlign: "left",
-            }}
-          >
+          <Box>
             <Typography variant="h6">{product.title}</Typography>
+            <Typography variant="body1">$ {product.price}</Typography>
           </Box>
         </Box>
       </Link>

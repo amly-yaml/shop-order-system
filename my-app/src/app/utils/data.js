@@ -1,7 +1,7 @@
 export const images = [
   "https://images.pexels.com/photos/683039/pexels-photo-683039.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  "https://images.pexels.com/photos/3740237/pexels-photo-3740237.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  "https://images.pexels.com/photos/982612/pexels-photo-982612.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "https://images.pexels.com/photos/1343504/pexels-photo-1343504.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "https://images.pexels.com/photos/2221925/pexels-photo-2221925.jpeg?auto=compress&cs=tinysrgb&w=1200",
 ];
 
 export const itemData = [
@@ -46,30 +46,116 @@ export const categories = [
     name: "Non-Coffee",
   },
   {
-    slug: "cake",
-    name: "Cake",
+    slug: "dessert",
+    name: "Dessert",
   },
 ];
 
 export const products = {
   home: [
     {
-      slug: "coffee",
-      title: "Coffee",
+      id: 0,
+      title: "Americano",
       image:
-        "https://i.pinimg.com/736x/75/ff/4b/75ff4bd9c9368c0b27f80988026bdb4a.jpg",
+        "https://i.pinimg.com/736x/9c/83/4c/9c834c6827c2332e182aa108092d9801.jpg",
+      price: "50.39",
     },
     {
-      slug: "noncoffee",
-      title: "Non-Coffee",
+      id: 1,
+      title: "Caffè Macchiato",
       image:
-        "https://i.pinimg.com/736x/96/ee/d9/96eed9822024adfcf31109821b87ab2d.jpg",
+        "https://i.pinimg.com/736x/e2/20/9c/e2209c26d834f67fa1da07be76540647.jpg",
+      price: "47.69",
     },
     {
-      slug: "cake",
-      title: "Cake",
+      id: 2,
+      title: "MatchaLatte",
       image:
-        "https://i.pinimg.com/736x/b3/0a/8f/b30a8f1a86aac9d34887a876b8f2e55b.jpg",
+        "https://i.pinimg.com/736x/9f/a9/fa/9fa9fa79a0d4008c16458c4b33b23b17.jpg",
+      price: "75.79",
+    },
+    {
+      id: 3,
+      title: "Cappucciono",
+      image:
+        "https://i.pinimg.com/736x/c9/c4/f7/c9c4f73587fef7d3e9f6d07671648fb3.jpg",
+      price: "45.39",
+    },
+
+    {
+      id: 0,
+      title: "Lemonade",
+      image:
+        "https://i.pinimg.com/736x/ef/26/1b/ef261bc9d15cce5bb8f0d36eb01b5fa4.jpg",
+      price: "45.39",
+    },
+    {
+      id: 1,
+      title: "Iced tea",
+      image:
+        "https://i.pinimg.com/736x/7a/9c/39/7a9c39b2710309b3799803dbc9479edb.jpg",
+      price: "40.39",
+    },
+    {
+      id: 2,
+      title: "Orange",
+      image:
+        "https://i.pinimg.com/736x/cc/98/38/cc9838758617204ba8f25ce37ce42750.jpg",
+      price: "42.99",
+    },
+    {
+      id: 3,
+      title: "Strawberry",
+      image:
+        "https://i.pinimg.com/736x/cd/40/cc/cd40ccbf5301f74da385a1e16c36a22e.jpg",
+      price: "47.59",
+    },
+    {
+      id: 3,
+      title: "Mango",
+      image:
+        "https://i.pinimg.com/736x/84/a5/b5/84a5b568cf035fd6edfa36e70ce4b258.jpg",
+      price: "41.39",
+    },
+    {
+      id: 3,
+      title: "Watermelon",
+      image:
+        "https://i.pinimg.com/736x/03/ab/50/03ab506cdba77915af13396784473c08.jpg",
+      price: "41.39",
+    },
+    {
+      id: 3,
+      title: "Hot Chocolate",
+      image:
+        "https://i.pinimg.com/736x/00/74/e1/0074e1c90926e0e8858f7e2b13150904.jpg",
+      price: "48.99",
+    },
+
+    {
+      title: "Chocolate Cake",
+      image: "/images/Chocolate_Cake.png",
+      price: "12.90",
+    },
+    {
+      title: "Cheese Cake",
+      image: "/images/cheese_cake.png",
+      price: "12.90",
+    },
+    {
+      title: "Croissant",
+      image: "/images/Crossant.png",
+      price: "6.30",
+    },
+    {
+      title: "Chocolate Ice Cream",
+      image: "/images/ice_cream1.png",
+      price: "6.60",
+    },
+    {
+      title: "Strawberry Ice Cream",
+      image: "/images/ice_cream2.png",
+      price: "6.60",
     },
   ],
   coffee: [
@@ -78,28 +164,28 @@ export const products = {
       title: "Americano",
       image:
         "https://i.pinimg.com/736x/9c/83/4c/9c834c6827c2332e182aa108092d9801.jpg",
-      price: "12.30",
+      price: "50.39",
     },
     {
       id: 1,
       title: "Caffè Macchiato",
       image:
         "https://i.pinimg.com/736x/e2/20/9c/e2209c26d834f67fa1da07be76540647.jpg",
-      price: "12.30",
+      price: "47.69",
     },
     {
       id: 2,
       title: "MatchaLatte",
       image:
         "https://i.pinimg.com/736x/9f/a9/fa/9fa9fa79a0d4008c16458c4b33b23b17.jpg",
-      price: "12.30",
+      price: "75.79",
     },
     {
       id: 3,
       title: "Cappucciono",
       image:
         "https://i.pinimg.com/736x/c9/c4/f7/c9c4f73587fef7d3e9f6d07671648fb3.jpg",
-      price: "12.30",
+      price: "45.39",
     },
   ],
   noncoffee: [
@@ -108,75 +194,76 @@ export const products = {
       title: "Lemonade",
       image:
         "https://i.pinimg.com/736x/ef/26/1b/ef261bc9d15cce5bb8f0d36eb01b5fa4.jpg",
-      price: "12.30",
+      price: "45.39",
     },
     {
       id: 1,
       title: "Iced tea",
       image:
         "https://i.pinimg.com/736x/7a/9c/39/7a9c39b2710309b3799803dbc9479edb.jpg",
-      price: "12.30",
+      price: "40.39",
     },
     {
       id: 2,
       title: "Orange",
       image:
         "https://i.pinimg.com/736x/cc/98/38/cc9838758617204ba8f25ce37ce42750.jpg",
-      price: "12.30",
+      price: "42.99",
     },
     {
       id: 3,
       title: "Strawberry",
       image:
         "https://i.pinimg.com/736x/cd/40/cc/cd40ccbf5301f74da385a1e16c36a22e.jpg",
-      price: "12.30",
+      price: "47.59",
     },
     {
       id: 3,
       title: "Mango",
       image:
         "https://i.pinimg.com/736x/84/a5/b5/84a5b568cf035fd6edfa36e70ce4b258.jpg",
-      price: "12.30",
+      price: "41.39",
     },
     {
       id: 3,
-      title: "Watermalon",
+      title: "Watermelon",
       image:
         "https://i.pinimg.com/736x/03/ab/50/03ab506cdba77915af13396784473c08.jpg",
-      price: "12.30",
+      price: "41.39",
     },
     {
       id: 3,
       title: "Hot Chocolate",
       image:
         "https://i.pinimg.com/736x/00/74/e1/0074e1c90926e0e8858f7e2b13150904.jpg",
-      price: "12.30",
+      price: "48.99",
     },
   ],
-  cake: [
+  dessert: [
     {
-      title: "Coffee",
-      image:
-        "https://i.pinimg.com/736x/75/ff/4b/75ff4bd9c9368c0b27f80988026bdb4a.jpg",
-      price: "12.30",
+      title: "Chocolate Cake",
+      image: "/images/Chocolate_Cake.png",
+      price: "12.90",
     },
     {
-      title: "Non-Coffee",
-      image:
-        "https://i.pinimg.com/736x/96/ee/d9/96eed9822024adfcf31109821b87ab2d.jpg",
-      price: "12.30",
+      title: "Cheese Cake",
+      image: "/images/cheese_cake.png",
+      price: "12.90",
     },
     {
-      title: "Dessert",
-      image:
-        "https://i.pinimg.com/736x/8c/3f/a4/8c3fa4a775c6c64ae8438119fcf278e0.jpg",
-      price: "12.30",
+      title: "Croissant",
+      image: "/images/Crossant.png",
+      price: "6.30",
     },
     {
-      title: "Cake",
-      image:
-        "https://i.pinimg.com/736x/b3/0a/8f/b30a8f1a86aac9d34887a876b8f2e55b.jpg",
-      price: "12.30",
+      title: "Chocolate Ice Cream",
+      image: "/images/ice_cream1.png",
+      price: "6.60",
+    },
+    {
+      title: "Strawberry Ice Cream",
+      image: "/images/ice_cream2.png",
+      price: "6.60",
     },
   ],
 };
@@ -185,6 +272,7 @@ export const itemProducts = [
   {
     americano: {
       id: 1,
+      slug: "americano",
       name: "Americano",
       image:
         "https://i.pinimg.com/736x/9c/83/4c/9c834c6827c2332e182aa108092d9801.jpg",
@@ -215,11 +303,6 @@ export const itemProducts = [
           price: "1.75",
         },
         {
-          name: "Whipped Cream",
-          image: "/images/whipped-cream.png",
-          price: "0.80",
-        },
-        {
           name: "Chocolate Syrup",
           image: "/images/block.png",
           price: "0.50",
@@ -239,30 +322,11 @@ export const itemProducts = [
           image: "/images/baby-food.png",
           price: "1.50",
         },
-        {
-          name: "Almond Milk",
-          image: "/images/almond-milk.png",
-          price: "0.85",
-        },
-        {
-          name: "Soy Milk",
-          image: "/images/soy-milk.png",
-          price: "1.25",
-        },
-        {
-          name: "Oat Milk",
-          image: "/images/oats.png",
-          price: "0.89",
-        },
-        {
-          name: "Coconut Milk",
-          image: "/images/coconut-milk-copy.png",
-          price: "1.45",
-        },
       ],
     },
     caffèmacchiato: {
       id: 2,
+      slug: "caffèmacchiato",
       name: "Caffè Macchiato",
       image:
         "https://i.pinimg.com/736x/e2/20/9c/e2209c26d834f67fa1da07be76540647.jpg",
@@ -333,14 +397,15 @@ export const itemProducts = [
           price: "0.89",
         },
         {
-          name: "Coconut Milk",
-          image: "/images/coconut-milk-copy.png",
+          name: "Milk",
+          image: "/images/milk.png",
           price: "1.45",
         },
       ],
     },
     matchalatte: {
       id: 3,
+      slug: "matchalatte",
       name: "Marcha Latte",
       image:
         "https://i.pinimg.com/736x/9f/a9/fa/9fa9fa79a0d4008c16458c4b33b23b17.jpg",
@@ -419,6 +484,7 @@ export const itemProducts = [
     },
     cappucciono: {
       id: 4,
+      slug: "cappucciono",
       name: "Cappucciono",
       image:
         "https://i.pinimg.com/736x/c9/c4/f7/c9c4f73587fef7d3e9f6d07671648fb3.jpg",
@@ -489,14 +555,16 @@ export const itemProducts = [
           price: "0.89",
         },
         {
-          name: "Coconut Milk",
-          image: "/images/coconut-milk-copy.png",
+          name: "Milk",
+          image: "/images/milk.png",
           price: "1.45",
         },
       ],
     },
     lemonade: {
       id: 4,
+      id: 4,
+      slug: "lemonade",
       name: "Lemonade",
       image:
         "https://i.pinimg.com/736x/ef/26/1b/ef261bc9d15cce5bb8f0d36eb01b5fa4.jpg",
@@ -517,64 +585,40 @@ export const itemProducts = [
       ],
       toppings: [
         {
-          name: "Brown Sugar",
-          image: "/images/brown-sugar(1).png",
-          price: "1.50",
+          name: "Add Mint",
+          image: "/images/mint.png",
+          price: "0.50",
         },
         {
-          name: "Honey",
+          name: "Add Lime",
+          image: "/images/lime.png",
+          price: "0.67",
+        },
+        {
+          name: "Grass Jelly",
+          image: "/images/grass-jelly.png",
+          price: "0.58",
+        },
+        {
+          name: "Honey Syrup",
           image: "/images/honey(1).png",
           price: "1.75",
         },
         {
-          name: "Whipped Cream",
-          image: "/images/whipped-cream.png",
-          price: "0.80",
-        },
-        {
-          name: "Chocolate Syrup",
-          image: "/images/block.png",
-          price: "0.50",
-        },
-        {
-          name: "Vanilla Syrup",
-          image: "/images/syrup.png",
-          price: "0.90",
-        },
-        {
-          name: "Hazelnut Syrup",
-          image: "/images/hazelnut.png",
+          name: "Sparkling water",
+          image: "/images/sparkling-drink.png",
           price: "1.20",
         },
         {
-          name: "Collagen powder",
-          image: "/images/baby-food.png",
-          price: "1.50",
-        },
-        {
-          name: "Almond Milk",
-          image: "/images/almond-milk.png",
-          price: "0.85",
-        },
-        {
-          name: "Soy Milk",
-          image: "/images/soy-milk.png",
-          price: "1.25",
-        },
-        {
-          name: "Oat Milk",
-          image: "/images/oats.png",
-          price: "0.89",
-        },
-        {
-          name: "Coconut Milk",
-          image: "/images/coconut-milk-copy.png",
-          price: "1.45",
+          name: "Soda",
+          image: "/images/soft-drink.png",
+          price: "1.20",
         },
       ],
     },
     icedtea: {
       id: 4,
+      slug: "icedtea",
       name: "Iced Tea",
       image:
         "https://i.pinimg.com/736x/da/98/9f/da989f6bac8c3cfe401f28a828a120fb.jpg",
@@ -582,7 +626,7 @@ export const itemProducts = [
       size: [
         {
           name: "Short",
-          price: "45.39",
+          price: "40.39",
         },
         {
           name: "Tall",
@@ -595,64 +639,40 @@ export const itemProducts = [
       ],
       toppings: [
         {
-          name: "Brown Sugar",
-          image: "/images/brown-sugar(1).png",
-          price: "1.50",
+          name: "Add Mint",
+          image: "/images/mint(1).png",
+          price: "0.50",
         },
         {
-          name: "Honey",
+          name: "Add Lemon",
+          image: "/images/lemon.png",
+          price: "0.80",
+        },
+        {
+          name: "Add Lime",
+          image: "/images/lime.png",
+          price: "0.67",
+        },
+        {
+          name: "Grass Jelly",
+          image: "/images/grass-jelly.png",
+          price: "0.58",
+        },
+        {
+          name: "Honey Syrup",
           image: "/images/honey(1).png",
           price: "1.75",
         },
         {
-          name: "Whipped Cream",
-          image: "/images/whipped-cream.png",
-          price: "0.80",
-        },
-        {
-          name: "Chocolate Syrup",
-          image: "/images/block.png",
-          price: "0.50",
-        },
-        {
-          name: "Vanilla Syrup",
-          image: "/images/syrup.png",
-          price: "0.90",
-        },
-        {
-          name: "Hazelnut Syrup",
-          image: "/images/hazelnut.png",
+          name: "Sparkling water",
+          image: "/images/sparkling-drink.png",
           price: "1.20",
-        },
-        {
-          name: "Collagen powder",
-          image: "/images/baby-food.png",
-          price: "1.50",
-        },
-        {
-          name: "Almond Milk",
-          image: "/images/almond-milk.png",
-          price: "0.85",
-        },
-        {
-          name: "Soy Milk",
-          image: "/images/soy-milk.png",
-          price: "1.25",
-        },
-        {
-          name: "Oat Milk",
-          image: "/images/oats.png",
-          price: "0.89",
-        },
-        {
-          name: "Coconut Milk",
-          image: "/images/coconut-milk-copy.png",
-          price: "1.45",
         },
       ],
     },
     orange: {
       id: 4,
+      slug: "orange",
       name: "Orange Juice",
       image:
         "https://i.pinimg.com/736x/cc/98/38/cc9838758617204ba8f25ce37ce42750.jpg",
@@ -660,7 +680,7 @@ export const itemProducts = [
       size: [
         {
           name: "Short",
-          price: "45.39",
+          price: "42.99",
         },
         {
           name: "Tall",
@@ -707,28 +727,18 @@ export const itemProducts = [
           image: "/images/soft-drink.png",
           price: "1.20",
         },
-        {
-          name: "Original",
-          image: "/images/orange-juice.png",
-          price: "0",
-        },
-        {
-          name: "Smoothies",
-          image: "/images/smoothie.png",
-          price: "1.90",
-        },
       ],
     },
     strawberry: {
       id: 4,
-      name: "Apple Juice",
+      name: "Strawberry Juice",
       image:
         "https://i.pinimg.com/736x/cd/40/cc/cd40ccbf5301f74da385a1e16c36a22e.jpg",
       choice: ["Less sugar", "Normal", "Sweet", "Extra Sweet"],
       size: [
         {
           name: "Short",
-          price: "45.39",
+          price: "47.59",
         },
         {
           name: "Tall",
@@ -774,16 +784,6 @@ export const itemProducts = [
           name: "Soda",
           image: "/images/soft-drink.png",
           price: "1.20",
-        },
-        {
-          name: "Original",
-          image: "/images/orange-juice.png",
-          price: "0",
-        },
-        {
-          name: "Smoothies",
-          image: "/images/smoothie.png",
-          price: "1.90",
         },
       ],
     },
@@ -796,7 +796,7 @@ export const itemProducts = [
       size: [
         {
           name: "Short",
-          price: "45.39",
+          price: "41.39",
         },
         {
           name: "Tall",
@@ -843,28 +843,18 @@ export const itemProducts = [
           image: "/images/soft-drink.png",
           price: "1.20",
         },
-        {
-          name: "Original",
-          image: "/images/mango-juice.png",
-          price: "0",
-        },
-        {
-          name: "Smoothies",
-          image: "/images/mango.png",
-          price: "1.90",
-        },
       ],
     },
-    watermalon: {
+    watermelon: {
       id: 4,
-      name: "Watermalon Juice",
+      name: "Watermelon Juice",
       image:
         "https://i.pinimg.com/736x/03/ab/50/03ab506cdba77915af13396784473c08.jpg",
       choice: ["Less sugar", "Normal", "Sweet", "Extra Sweet"],
       size: [
         {
           name: "Short",
-          price: "45.39",
+          price: "41.39",
         },
         {
           name: "Tall",
@@ -910,16 +900,6 @@ export const itemProducts = [
           name: "Soda",
           image: "/images/soft-drink.png",
           price: "1.20",
-        },
-        {
-          name: "Original",
-          image: "/images/orange-juice.png",
-          price: "0",
-        },
-        {
-          name: "Smoothies",
-          image: "/images/smoothie.png",
-          price: "1.90",
         },
       ],
     },
@@ -932,7 +912,7 @@ export const itemProducts = [
       size: [
         {
           name: "Short",
-          price: "45.39",
+          price: "48.99",
         },
         {
           name: "Tall",
@@ -981,13 +961,145 @@ export const itemProducts = [
         },
         {
           name: "Milk",
-          image: "/images/coconut-milk-copy.png",
+          image: "/images/milk.png",
           price: "1.45",
         },
         {
           name: "Marshmallows",
-          image: "/images/coconut-milk-copy.png",
+          image: "/images/marshmallow(1).png",
           price: "1.45",
+        },
+      ],
+    },
+    chocolatecake: {
+      id: 1,
+      name: "Chocolate Cake",
+      image: "/images/Chocolate_Cake.png",
+      choice: null,
+      size: [
+        {
+          name: "Slice",
+          price: "12.6",
+        },
+        {
+          name: "Whole",
+          price: "12.60",
+        },
+      ],
+      toppings: [
+        {
+          name: "Chocolate Shavings",
+          image: "/images/dessert.png",
+          price: "1.00",
+        },
+        {
+          name: "Whipped Cream",
+          image: "/images/whip-cream (1).png",
+          price: "0.50",
+        },
+      ],
+    },
+    cheesecake: {
+      id: 2,
+      name: "Cheese Cake",
+      image: "/images/cheese_cake.png",
+      choice: null,
+      size: [
+        {
+          name: "Slice",
+          price: "12.6",
+        },
+        {
+          name: "Whole",
+          price: "12.60",
+        },
+      ],
+      toppings: [
+        {
+          name: "Strawberry",
+          image: "/images/strawberry.png",
+          price: "1.00",
+        },
+        {
+          name: "Caramel",
+          image: "/images/cream.png",
+          price: "0.50",
+        },
+      ],
+    },
+    croissant: {
+      id: 3,
+      name: "Croissant",
+      image: "/images/Crossant.png",
+      choice: null,
+      size: null,
+      toppings: [
+        {
+          name: "Cinnamon Sugar",
+          image: "/images/cinnamon-roll.png",
+          price: "2.00",
+        },
+        {
+          name: "Chocolate Filled",
+          image: "/images/chocolate.png",
+          price: "2.50",
+        },
+      ],
+    },
+    chocolateicecream: {
+      id: 4,
+      name: "Chocolate Ice-cream ",
+      image: "/images/ice_cream1.png",
+      choice: null,
+      size: [
+        {
+          name: "Single Scoop",
+          price: "3.00",
+        },
+        {
+          name: "Double Scoop",
+          price: "2.00",
+        },
+      ],
+      toppings: [
+        {
+          name: "Chocolate Sprinkles",
+          image: "/images/popsicle.png",
+          price: "1.00",
+        },
+        {
+          name: "Chocolate Chips",
+          image: "/images/cookie.png",
+          price: "0.50",
+        },
+      ],
+    },
+    strawberryicecream: {
+      id: 4,
+      name: "Strawberry Ice-cream",
+      image: "/images/ice_cream2.png",
+      choice: null,
+      size: [
+        {
+          name: "Single Scoop",
+          price: "3.00",
+        },
+        {
+          name: "Double Scoop",
+          price: "2.00",
+        },
+      ],
+
+      toppings: [
+        {
+          name: "Chocolate Sprinkles",
+          image: "/images/popsicle.png",
+          price: "1..00",
+        },
+        {
+          name: "Chocolate Chips",
+          image: "/images/cookie.png",
+          price: "0.50",
         },
       ],
     },

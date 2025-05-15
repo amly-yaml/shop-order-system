@@ -28,7 +28,7 @@ function PaymentPage() {
           mx: "auto",
         }}
       >
-        <Link href="/order-confirm" passHref legacyBehavior>
+        <Link href="/order-confirm">
           <Button
             variant="contained"
             sx={{

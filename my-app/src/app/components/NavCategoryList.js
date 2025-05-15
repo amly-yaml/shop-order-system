@@ -51,8 +51,7 @@ function NavCategoryList({ landingPage, landingCategory, window }) {
     } else {
       dispatch(setCategory(selectedCategory));
     }
-    //dispatch(fetchProductsByCategory(defaultCategory));
-  }, [landingCategory]);
+  });
 
   const handleCategoryClick = (categoryName) => {
     dispatch(setCategory(categoryName));
