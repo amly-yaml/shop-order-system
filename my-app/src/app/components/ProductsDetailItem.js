@@ -121,19 +121,23 @@ export default function ProductsDetailItem() {
                 }}
               >
                 <ButtonGroup>
-                  {foundItem.choice.map((choiceItem, index) => {
-                    const isSelected = choiceItem === currentOrder?.choice;
-                    return (
-                      <Button
-                        key={index}
-                        variant={isSelected ? "contained" : "outlined"}
-                        color={isSelected ? "success" : "primary"}
-                        onClick={() => dispatch(chooseType(choiceItem))}
-                      >
-                        {choiceItem}
-                      </Button>
-                    );
-                  })}
+                  {foundItem.choice && Array.isArray(foundItem.choice) ? (
+                    foundItem.choice.map((choiceItem, index) => {
+                      const isSelected = choiceItem === currentOrder?.choice;
+                      return (
+                        <Button
+                          key={index}
+                          variant={isSelected ? "contained" : "outlined"}
+                          color={isSelected ? "success" : "primary"}
+                          onClick={() => dispatch(chooseType(choiceItem))}
+                        >
+                          {choiceItem}
+                        </Button>
+                      );
+                    })
+                  ) : (
+                    <Typography>No choices available</Typography>
+                  )}
                 </ButtonGroup>
               </Box>
 
@@ -148,28 +152,32 @@ export default function ProductsDetailItem() {
                   }}
                 >
                   <ButtonGroup>
-                    {foundItem.size.map((sizeItem, index) => {
-                      const isSelected = currentOrder?.size === sizeItem.name;
-                      return (
-                        <Box key={index}>
-                          <Button
-                            variant={isSelected ? "contained" : "outlined"}
-                            color={isSelected ? "success" : "primary"}
-                            onClick={() => dispatch(chooseSize(sizeItem))}
-                          >
-                            {sizeItem.name}
-                          </Button>
-                          <Typography
-                            sx={{
-                              my: 1,
-                              textAlign: "center",
-                            }}
-                          >
-                            $ {sizeItem.price}
-                          </Typography>
-                        </Box>
-                      );
-                    })}
+                    {foundItem.size && Array.isArray(foundItem.size) ? (
+                      foundItem.size.map((sizeItem, index) => {
+                        const isSelected = currentOrder?.size === sizeItem.name;
+                        return (
+                          <Box key={index}>
+                            <Button
+                              variant={isSelected ? "contained" : "outlined"}
+                              color={isSelected ? "success" : "primary"}
+                              onClick={() => dispatch(chooseSize(sizeItem))}
+                            >
+                              {sizeItem.name}
+                            </Button>
+                            <Typography
+                              sx={{
+                                my: 1,
+                                textAlign: "center",
+                              }}
+                            >
+                              $ {sizeItem.price}
+                            </Typography>
+                          </Box>
+                        );
+                      })
+                    ) : (
+                      <Typography>No sizes available</Typography>
+                    )}
                   </ButtonGroup>
                 </Box>
               </Box>
@@ -180,64 +188,70 @@ export default function ProductsDetailItem() {
           Customization AddOns
         </Typography>
         <Grid container spacing={2}>
-          {foundItem.toppings.map((topping, index) => {
-            const isSelected = isSelectedTopping(topping) && {
-              backgroundColor: green[400],
-            };
-            return (
-              <Grid
-                key={index}
-                item
-                // xs={12}
-                // sm={6}
-                // md={4}
-                // lg={4}
-                size={{ xs: 12, sm: 6, md: 3, lg: 2 }}
-              >
-                <Box
-                  sx={{
-                    textAlign: "center",
-                    boxShadow: 1,
-                    borderRadius: 2,
-                    py: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "100%",
-                    overflow: "hidden",
-                    wordBreak: "break-all",
-                    cursor: "pointer",
-                    ...isSelected,
-                  }}
-                  onClick={() => dispatch(addAddOn(topping))}
+          {foundItem.toppings && Array.isArray(foundItem.toppings) ? (
+            foundItem.toppings.map((topping, index) => {
+              const isSelected = isSelectedTopping(topping) && {
+                backgroundColor: green[400],
+              };
+              return (
+                <Grid
+                  key={index}
+                  item
+                  // xs={12}
+                  // sm={6}
+                  // md={4}
+                  // lg={4}
+                  size={{ xs: 12, sm: 6, md: 3, lg: 2 }}
                 >
-                  <Image
-                    src={topping.image}
-                    alt="image"
-                    width={500}
-                    height={500}
-                    style={{
-                      width: 70,
-                      height: 70,
-                      margin: "0 auto",
-                      objectFit: "contain",
-                      marginBottom: "10px",
-                    }}
-                  />
-                  <Divider />
                   <Box
                     sx={{
-                      my: 1,
+                      textAlign: "center",
+                      boxShadow: 1,
+                      borderRadius: 2,
+                      py: 1,
+                      display: "flex",
+                      flexDirection: "column",
+                      height: "100%",
+                      overflow: "hidden",
+                      wordBreak: "break-all",
+                      cursor: "pointer",
+                      ...isSelected,
                     }}
+                    onClick={() => dispatch(addAddOn(topping))}
                   >
-                    <Typography>{topping.name}</Typography>
-                    <Typography variant="subtitle2">
-                      ${topping.price}
-                    </Typography>
+                    <Image
+                      src={topping.image}
+                      alt="image"
+                      width={500}
+                      height={500}
+                      style={{
+                        width: 70,
+                        height: 70,
+                        margin: "0 auto",
+                        objectFit: "contain",
+                        marginBottom: "10px",
+                      }}
+                    />
+                    <Divider />
+                    <Box
+                      sx={{
+                        my: 1,
+                      }}
+                    >
+                      <Typography>{topping.name}</Typography>
+                      <Typography variant="subtitle2">
+                        ${topping.price}
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
-              </Grid>
-            );
-          })}
+                </Grid>
+              );
+            })
+          ) : (
+            <Grid item xs={12}>
+              <Typography>No toppings available</Typography>
+            </Grid>
+          )}
         </Grid>
         <Box
           sx={{

@@ -923,7 +923,7 @@ export const itemProducts = [
         },
       ],
     },
-     chocolatecake: {
+    chocolatecake: {
       id: 1,
       name: "Chocolate Cake",
       image:
@@ -942,10 +942,12 @@ export const itemProducts = [
       toppings: [
         {
           name: "Chocolate Shavings",
+          image: "/images/dessert.png",
           price: "1.00",
         },
         {
           name: "Whipped Cream",
+          image: "/images/whip-cream (1).png",
           price: "0.50",
         },
        
@@ -970,10 +972,12 @@ export const itemProducts = [
       toppings: [
         {
           name: "Strawberry",
+          image: "/images/strawberry.png",
           price: "1.00",
         },
         {
           name: "Caramel",
+          image: "/images/cream.png",
           price: "0.50",
         },
         
@@ -988,11 +992,13 @@ export const itemProducts = [
       size: null,
       toppings: [
       {
-        name: "Plain",
+        name: "Cinnamon Sugar",
+        image: "/images/cinnamon-roll.png",
         price: "2.00",
       },
       {
         name: "Chocolate Filled",
+        image: "/images/chocolate.png",
         price: "2.50",
       }
     ],
@@ -1018,10 +1024,12 @@ export const itemProducts = [
       toppings: [
       {
         name: "Chocolate Sprinkles",
+        image: "/images/popsicle.png",
         price: "1.00",
       },
       {
-        name: "Plain",
+        name: "Chocolate Chips",
+        image: "/images/cookie.png",
         price: "0.50",
       }
     ],
@@ -1047,10 +1055,12 @@ export const itemProducts = [
       toppings: [
           {
             name: "Chocolate Sprinkles",
+            image: "/images/popsicle.png",
             price: "1..00",
           },
           {
-            name: "Plain",
+            name: "Chocolate Chips",
+            image: "/images/cookie.png",
             price: "0.50",
           }
     ],
