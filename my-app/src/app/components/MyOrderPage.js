@@ -11,6 +11,7 @@ import {
 } from "../redux/productSlice";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
 import { styled } from "@mui/material/styles";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
@@ -22,92 +23,6 @@ import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import { green, grey } from "@mui/material/colors";
 import Link from "next/link";
 import { setOrderNumber } from "../redux/orderSlice";
-
-const orderingItems = [
-  {
-    id: 0,
-    drink: {
-      id: 0,
-      title: "Americano",
-      image:
-        "https://i.pinimg.com/736x/9c/83/4c/9c834c6827c2332e182aa108092d9801.jpg",
-      price: "12.30",
-    },
-    choice: "Cold Coffee",
-    size: "Grande",
-    basePrice: "85.99",
-    addOns: [
-      {
-        name: "Chocolate Syrup",
-        image: "/images/block.png",
-        price: "0.50",
-      },
-      {
-        name: "Whipped Cream",
-        image: "/images/whipped-cream.png",
-        price: "0.80",
-      },
-    ],
-    quantity: 2,
-  },
-  {
-    id: 1,
-    drink: {
-      id: 2,
-      title: "MatchaLatte",
-      image:
-        "https://i.pinimg.com/736x/9f/a9/fa/9fa9fa79a0d4008c16458c4b33b23b17.jpg",
-      price: "12.30",
-    },
-    choice: "Cold Coffee",
-    size: "Grande",
-    basePrice: "90.59",
-    addOns: [
-      {
-        name: "Honey",
-        image: "/images/honey(1).png",
-        price: "1.75",
-      },
-      {
-        name: "Whipped Cream",
-        image: "/images/whipped-cream.png",
-        price: "0.80",
-      },
-      {
-        name: "Soy Milk",
-        image: "/images/soy-milk.png",
-        price: "1.25",
-      },
-    ],
-    quantity: 2,
-  },
-  {
-    id: 2,
-    drink: {
-      id: 3,
-      title: "Cappucciono",
-      image:
-        "https://i.pinimg.com/736x/c9/c4/f7/c9c4f73587fef7d3e9f6d07671648fb3.jpg",
-      price: "12.30",
-    },
-    choice: "Cold Coffee",
-    size: "Grande",
-    basePrice: "89.49",
-    addOns: [
-      {
-        name: "Hazelnut Syrup",
-        image: "/images/hazelnut.png",
-        price: "1.20",
-      },
-      {
-        name: "Coconut Milk",
-        image: "/images/coconut-milk-copy.png",
-        price: "1.45",
-      },
-    ],
-    quantity: 1,
-  },
-];
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -156,7 +71,7 @@ const changeColor = {
 export default function MyOrderPage() {
   const [expanded, setExpanded] = React.useState("null");
   // const { orderNumber } = useSelector((state) => state.order);
-  const { orderItems } = useSelector((state) => state.products);
+  const { orderItems, selectPlace } = useSelector((state) => state.products);
   const [orderNumber, setOrderNumberLocal] = useState("");
   console.log("orderItems", orderItems);
   const getAllTotal = useSelector(getAllTotalPrice);
@@ -187,12 +102,14 @@ export default function MyOrderPage() {
       <Container
         disableGutters
         sx={{
-          width: "1500px",
+          maxWidth: "1000px",
+          width: "100%",
           my: 5,
           pb: 40,
+          px: 3,
         }}
       >
-        <Box sx={{ display: "flex", justifyContent: "space-between", p: 3 }}>
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography variant="h4" sx={{ color: "#3e2723" }}>
             Your Order
           </Typography>
@@ -222,6 +139,7 @@ export default function MyOrderPage() {
             <Box
               sx={{
                 px: 3,
+                my: 3,
               }}
             >
               <Typography
@@ -243,49 +161,56 @@ export default function MyOrderPage() {
         )}
         {orderItems.length !== 0 && (
           <>
-            <Typography
-              sx={{ fontWeight: "bold", mb: 5, color: "#8d6e63", pl: 3 }}
-            >
-              Order {orderNumber}
-            </Typography>
+            <Box sx={{ display: "flex", gap: 5 }}>
+              <Typography
+                sx={{ fontWeight: "bold", mb: 5, color: "#8d6e63", pt: 2 }}
+              >
+                Order {orderNumber}
+              </Typography>
+              <Typography
+                variant="subtitle2"
+                color="secondary"
+                sx={{ fontWeight: "bold", mb: 5, pt: 2 }}
+              >
+                ({selectPlace})
+              </Typography>
+            </Box>
+
             <Grid container spacing={2}>
               {orderItems.map((order, index) => {
                 const panel = `panel${index + 1}`;
                 return (
                   <React.Fragment key={index}>
-                    <Grid item size={{ xs: 3, sm: 3, md: 2 }}>
+                    <Grid item size={{ xs: 1, sm: 3, md: 2, lg: 2 }}>
                       <Box
                         sx={{
                           display: "flex",
                           justifyContent: "center",
                         }}
                       >
-                        <Button
+                        <DeleteIcon
                           sx={{
-                            backgroundColor: "#fff",
-                            color: "#DC143C",
-                            fontWeight: "bold",
-                            px: 4,
-                            py: 1.3,
-                            border: "1px solid #DC143C",
-                            "&:hover": {
-                              backgroundColor: "#FA8072",
-                              color: "#fff"
+                            ...changeColor,
+                            fontSize: {
+                              xs: "1.1rem", // small screen
+                              sm: "1.25rem", // medium screen
+                              // md: "1.5rem", // large screen and up
                             },
                           }}
+                          cursor="pointer"
+                          color="error"
+                          fontSize="medium"
                           onClick={() => dispatch(removeItemOrder(order.id))}
-                        >
-                          Remove
-                        </Button>
+                        ></DeleteIcon>
                       </Box>
                     </Grid>
-                    <Grid item size={{ xs: 7, sm: 6, md: 6 }}>
+                    <Grid item size={{ xs: 6, sm: 6, md: 6, lg: 6 }}>
                       <Box
                         sx={{
                           display: "flex",
                           justifyContent: "left",
                           alignItems: "left",
-                          gap: 3,
+                          gap: 1,
                         }}
                       >
                         <Image
@@ -293,7 +218,7 @@ export default function MyOrderPage() {
                           alt={order.drink.title}
                           width={500}
                           height={500}
-                          style={{ width: 85, height: 85 }}
+                          style={{ width: 80, height: 80 }}
                         ></Image>
                         <Box
                           sx={{
@@ -307,17 +232,49 @@ export default function MyOrderPage() {
                             sx={{
                               overflow: "hidden",
                               wordBreak: "break-all",
+                              fontSize: {
+                                xs: "0.75rem",
+                                sm: "0.85rem",
+                                md: "0.9rem",
+                              },
                             }}
                           >
                             {order.drink.title}
                           </Typography>
-                          <Typography variant="body2">
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              fontSize: {
+                                xs: "0.7rem",
+                                sm: "0.75rem",
+                                md: "0.8rem",
+                              },
+                            }}
+                          >
                             Choice: {order.choice}
                           </Typography>
-                          <Typography variant="body2">
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              fontSize: {
+                                xs: "0.7rem",
+                                sm: "0.75rem",
+                                md: "0.8rem",
+                              },
+                            }}
+                          >
                             Size: {order.size}
                           </Typography>
-                          <Typography variant="body2">
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              fontSize: {
+                                xs: "0.7rem",
+                                sm: "0.75rem",
+                                md: "0.8rem",
+                              },
+                            }}
+                          >
                             Price: ${order.basePrice}
                           </Typography>
                         </Box>
@@ -375,7 +332,7 @@ export default function MyOrderPage() {
                         </Accordion>
                       </Box>
                     </Grid>
-                    <Grid item size={{ xs: 1, sm: 2, md: 2 }}>
+                    <Grid item size={{ xs: 3, sm: 2, md: 2, lg: 2 }}>
                       <Box
                         sx={{
                           display: "flex",
@@ -387,6 +344,11 @@ export default function MyOrderPage() {
                           sx={{
                             ...changeColor,
                             border: `2px solid ${grey[700]}`,
+                            fontSize: {
+                              xs: "1.1rem", // small screen
+                              sm: "1.25rem", // medium screen
+                              // md: "1.5rem", // large screen and up
+                            },
                           }}
                           cursor="pointer"
                           color="success"
@@ -398,7 +360,7 @@ export default function MyOrderPage() {
                         <Typography
                           variant="body1"
                           sx={{
-                            mx: 2,
+                            mx: 1,
                           }}
                         >
                           {order.quantity}
@@ -407,6 +369,11 @@ export default function MyOrderPage() {
                           sx={{
                             ...changeColor,
                             border: `2px solid ${grey[700]}`,
+                            fontSize: {
+                              xs: "1.1rem", // small screen
+                              sm: "1.25rem", // medium screen
+                              // md: "1.5rem", // large screen and up
+                            },
                           }}
                           cursor="pointer"
                           color="success"
@@ -417,7 +384,7 @@ export default function MyOrderPage() {
                         ></AddIcon>
                       </Box>
                     </Grid>
-                    <Grid item size={{ xs: 1, sm: 1, md: 2 }}>
+                    <Grid item size={{ xs: 1, sm: 1, md: 2, lg: 2 }}>
                       <Box textAlign="left">
                         <Typography variant="body1">
                           ${getOrderTotal(order)}

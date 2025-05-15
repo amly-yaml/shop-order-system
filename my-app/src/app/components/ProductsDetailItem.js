@@ -24,6 +24,7 @@ import {
   chooseType,
   decreaseQuantity,
   increaseQuantity,
+  toggleCart,
 } from "../redux/productSlice";
 import { green, grey } from "@mui/material/colors";
 import AddIcon from "@mui/icons-material/Add";
@@ -114,10 +115,7 @@ export default function ProductsDetailItem() {
               <Box
                 sx={{
                   my: 3,
-                  // display: "flex",
-                  // justifyContent: "left",
-                  // flexWrap: "wrap", // optional: if too many buttons, they wrap
-                  // gap: 2,
+                  flexWrap: "wrap", // optional: if too many buttons, they wrap
                 }}
               >
                 <ButtonGroup>
@@ -136,7 +134,9 @@ export default function ProductsDetailItem() {
                       );
                     })
                   ) : (
-                    <Typography>No choices available</Typography>
+                    <Typography variant="boday1">
+                      *** No choices available ***
+                    </Typography>
                   )}
                 </ButtonGroup>
               </Box>
@@ -146,9 +146,7 @@ export default function ProductsDetailItem() {
                 <Box
                   sx={{
                     my: 1,
-                    // display: "flex",
-                    // justifyContent: "left",
-                    // flexWrap: "wrap", // optional: if too many buttons, they wrap
+                    flexWrap: "wrap", // optional: if too many buttons, they wrap
                   }}
                 >
                   <ButtonGroup>
@@ -176,7 +174,9 @@ export default function ProductsDetailItem() {
                         );
                       })
                     ) : (
-                      <Typography>No sizes available</Typography>
+                      <Typography variant="body1">
+                        *** No sizes available ***
+                      </Typography>
                     )}
                   </ButtonGroup>
                 </Box>
@@ -337,32 +337,47 @@ export default function ProductsDetailItem() {
                 p: 4,
               }}
             >
-              <Link href={`/category/${selectedCategory}`}>
-                <Button
-                  variant="contained"
-                  sx={{
-                    mr: 5,
-                    p: 1.5,
-                    px: 5,
-                  }}
-                  onClick={() => dispatch(addToOrder())}
-                >
-                  Add To Order
-                </Button>
-              </Link>
-              <Link href="/category/home">
-                <Button
-                  variant="outlined"
-                  color="error"
-                  sx={{
-                    py: 1.5,
-                    px: 5,
-                  }}
-                  onClick={() => dispatch(cancelItem())}
-                >
-                  Cancel Item
-                </Button>
-              </Link>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
+                  width: "100%",
+                  gap: 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Link href="/category/myorder" passHref>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      p: 1.5,
+                      px: 5,
+                      width: { xs: "100%", sm: "auto" },
+                    }}
+                    onClick={() => {
+                      dispatch(addToOrder());
+                      // dispatch(toggleCart(true));
+                    }}
+                  >
+                    Add To Order
+                  </Button>
+                </Link>
+                <Link href="/category/home" passHref>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    sx={{
+                      py: 1.5,
+                      px: 5,
+                      width: { xs: "100%", sm: "auto" },
+                    }}
+                    onClick={() => dispatch(cancelItem())}
+                  >
+                    Cancel Item
+                  </Button>
+                </Link>
+              </Box>
             </DialogActions>
           </Dialog>
         </Box>

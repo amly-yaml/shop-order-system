@@ -6,7 +6,9 @@ import CategoryItems from "./CategoryItems";
 
 function CategoryChoice() {
   const { productName } = useParams();
-  const prductDecodeName = decodeURIComponent(productName).replace(/\s+/g, "");
+  const prductDecodeName = decodeURIComponent(productName)
+    .toLowerCase()
+    .replace(/\s+/g, "");
   return (
     <NavCategoryList
       landingPage={<CategoryItems />}

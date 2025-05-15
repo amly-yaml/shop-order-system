@@ -9,6 +9,7 @@ export const productsSlice = createSlice({
     currentOrder: null,
     orderItems: [],
     orderIdCounter: 0, // ensures unique IDs
+    open: false,
   },
   reducers: {
     setPlaceToEat: (state, action) => {
@@ -101,6 +102,10 @@ export const productsSlice = createSlice({
     clearOrder: (state) => {
       state.orderItems = [];
     },
+    toggleCart: (state, action) => {
+      // action.payload = true or false
+      state.open = action.payload;
+    },
   },
 });
 
@@ -133,5 +138,6 @@ export const {
   removeItemOrder,
   addDuplicateOrder,
   clearOrder,
+  toggleCart,
 } = productsSlice.actions;
 export default productsSlice.reducer;

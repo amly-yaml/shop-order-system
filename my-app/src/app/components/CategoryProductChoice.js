@@ -9,8 +9,12 @@ import ProductsDetailItem from "./ProductsDetailItem";
 export default function CategoryProductChoice() {
   const { productName, productDetail } = useParams();
   const dispatch = useDispatch();
-  const prductDecodeName = decodeURIComponent(productName).replace(/\s+/g, "");
-  const itemDecodeName = decodeURIComponent(productDetail).replace(/\s+/g, "");
+  const prductDecodeName = decodeURIComponent(productName)
+    .toLowerCase()
+    .replace(/\s+/g, "");
+  const itemDecodeName = decodeURIComponent(productDetail)
+    .toLowerCase()
+    .replace(/\s+/g, "");
 
   useEffect(() => {
     dispatch(setSelectedItem(itemDecodeName));
